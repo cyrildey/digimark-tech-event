@@ -75,12 +75,29 @@
   overflow: hidden;
 }
 .countdown-container {
-      text-align: center;
-      padding: 40px;
-      border-radius: 12px;
-      
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.timer {
+      display: flex;
+      gap: 20px;
+      background-color: #fff8f0;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
     }
+
+    .time-box {
+      text-align: center;
+      background-color: #ffe5b4;
+      padding: 20px;
+      border-radius: 10px;
+      color: #333;
+      min-width: 80px;
+    }
+
 
     h1 {
       color: #d11f1f;
@@ -150,28 +167,53 @@
         <div class="container mx-auto px-4 text-center">
           <h2 class="text-5xl font-bold mb-6">DigiMark Tech Innovation Showcase 2025</h2>
           <div class="countdown-container">
-            <h1>Countdown to August 22, 2025</h1>
-            <div class="timer" id="timer">Loading...</div>
-          </div>
+  <div class="timer">
+    <div class="time-box">
+      <h1 id="days">0</h1>
+      <p>Days</p>
+    </div>
+    <div class="time-box">
+      <h1 id="hours">0</h1>
+      <p>Hours</p>
+    </div>
+    <div class="time-box">
+      <h1 id="minutes">0</h1>
+      <p>Mins</p>
+    </div>
+    <div class="time-box">
+      <h1 id="seconds">0</h1>
+      <p>Secs</p>
+    </div>
+  </div>
+</div>
+
           <script>
-             const targetDate = new Date("2025-08-22T00:00:00").getTime();
+    function updateCountdown() {
+      const now = new Date();
+      const targetDate = new Date(now.getFullYear(), now.getMonth(), 22, 0, 0, 0);
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const gap = targetDate - now;
+      // If today is past the 22nd, set target to next month
+      if (now > targetDate) {
+        targetDate.setMonth(targetDate.getMonth() + 1);
+      }
 
-  const days = Math.floor(gap / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((gap / (1000 * 60)) % 60);
-  const seconds = Math.floor((gap / 1000) % 60);
+      const diff = targetDate - now;
 
-  document.getElementById("timer").innerHTML =
-    `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-          </script>
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Initial call
+  </script>
+
           <p class="text-xl mb-8 max-w-3xl mx-auto">
             Experience the future today as our visionary interns unveil bold, forward-thinking technologies—creative solutions designed to reshape industries and tackle real-world challenges with ingenuity and impact.
         </p>
