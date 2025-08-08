@@ -68,6 +68,7 @@
     </script>
     <style>
       
+     
   
   .team-item {
   background-color: #ffe5b4; /* Light orange tone */
@@ -140,6 +141,52 @@
         width: 1em;
         height: 1em;
       }
+      .services-item {
+  background-color: #fff8f0; /* Soft background like countdown */
+  border: 1px solid #ffd699;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+}
+
+.services-content-icon i,
+.services-content-icon img {
+  color: #d11f1f;
+}
+
+.services-content h4 {
+  color: #d11f1f;
+  font-weight: bold;
+}
+
+.services-content p {
+  color: #333;
+}
+
+.services-content .btn {
+  background-color: #DF8142;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.services-content .btn:hover {
+  background-color: #d95f00;
+}
+.services-content-icon i {
+  color: #DF8142 !important; /* Matches countdown button color */
+  transition: color 0.3s ease;
+}
+
+.services-content-icon i:hover {
+  color: #d95f00; /* Slightly deeper orange on hover */
+}
+
     </style>
   </head>
   <body>
@@ -244,25 +291,75 @@
             <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
           </div>
         </div>
-      
-        <!-- Robot Education -->
-        <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
-          <div class="p-6">
-            <img src="assets\img\robot logo.jpeg" alt="Robot Logo" class="w-12 h-12 mb-3 rounded-full">
-            <div class="flex justify-between items-start mb-2">
-              <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">Robot Education</span>
-              <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Web/Mobile Development</span>
-            </div>
-            <h3 class="text-xl text-gray-800 font-semibold mb-2">Robot Education</h3>
-            <p class="text-gray-600 text-sm">AI-enhanced learning platform to explore Cameroon and its diverse cultures.</p>
-            <div class="hidden mt-3 text-sm text-gray-700 details">
-              Includes interactive quizzes, multilingual support, and gamified education modules tailored to Cameroonian heritage. Built for learners of all ages, it encourages cultural pride and digital literacy.
-            </div>
-            <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
-          </div>
-        </div>
-      
-        <!-- Quick Ride -->
+        <!-- Nexa AI Assistant -->
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-purple-500">
+  <div class="p-6">
+    <img src="assets\img\nexa.jpeg" alt="Nexa Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800">Nexa</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">AI Assistant & Education</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">Nexa – Smart Educator & Receptionist</h3>
+    <p class="text-gray-600 text-sm">AI-powered robot designed to revolutionize hospitality and education through expressive interaction and adaptive learning.</p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      Nexa greets visitors, manages appointments, and guides users through services. As an educator, it delivers personalized, real-time learning across subjects. Ideal for schools, offices, museums, and tech hubs.
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+        <!-- RobiX Cultural Chatbot -->
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets\img\robot logo.jpeg" alt="Robot Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">RobiX</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">AI & Cultural Education</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">RobiX – Cultural Chatbot</h3>
+    <p class="text-gray-600 text-sm">AI-powered assistant promoting Cameroonian heritage through interactive conversations and voice-based learning.</p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      Offers real-time translations, folklore guidance, and personalized cultural education for schools, tourists, and families. Supports local entrepreneurship and combats language extinction.
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+<!-- LUXILEDS LED Display -->
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-violet-500">
+  <div class="p-6">
+    <img src="assets\img\led.PNG" alt="LUXILEDS Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800">LUXILEDS</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Electronics & Display Tech</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">3D Cubic LED Display</h3>
+    <p class="text-gray-600 text-sm">A visually captivating LED cube controlled by microcontrollers to simulate 3D motion using light animations.</p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      Ideal for education, exhibitions, and creative tech projects. Uses multiplexing and persistence of vision to animate LED layers. Great for learning electronics and hardware design.
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+<!-- SMARTID Student ID System -->
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets/img/sid_logo.jpeg" alt="SMARTID Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">SMARTID (S.I.D)</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Education & Identity Tech</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">Student ID & Attestation System</h3>
+    <p class="text-gray-600 text-sm">Fast, reliable platform for generating student identification cards and official attestations within academic institutions.</p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      SMARTID streamlines the creation of student IDs and documents confirming enrollment, specialty, and academic status. Designed for schools and universities, it ensures authenticity and efficiency in student record management.
+      <br><br><strong>
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+       <!--Quick Ride-->
         <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
           <div class="p-6">
             <img src="assets\img\rides.jpeg" alt="Quick Ride Logo" class="w-12 h-12 mb-3 rounded-full">
@@ -295,7 +392,7 @@
         }
       </script>
       
-          
+          <br><br>
           <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-800 mb-4">Comming Soon</h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -341,160 +438,283 @@
               <p class="text-gray-600 text-sm">Stars reviews given by satisfied clients</p>
             </div>
           </div>
+ <section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-10 text-center">Our Trusted Partners</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      
+      <!-- Partner Card -->
+      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fas fa-handshake text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">DIMS</a>
+      </div>
+
+      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fas fa-laptop-code text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">LaaTech</a>
+      </div>
+
+      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fas fa-plane-departure text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Splendor Travels</a>
+      </div>
+
+      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fas fa-leaf text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Green House Energy and Gas Sarl</a>
+      </div>
+
+      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fas fa-seedling text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">EDEN</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white text-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-10 text-center text-orange-600">Connect With Us</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+      
+      <!-- Social Card -->
+      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fab fa-facebook-f text-blue-600 text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Facebook</a>
+      </div>
+
+      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fab fa-twitter text-blue-400 text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">X</a>
+      </div>
+
+      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fab fa-linkedin-in text-blue-700 text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">LinkedIn</a>
+      </div>
+
+      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
+        <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Instagram</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
           <div class="mb-16">
             <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">Our Services</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div class="p-6 text-center">
-                  <div class="text-orange-500 mb-4 flex justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code w-8 h-8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                  </div>
-                  <h4 class="text-xl font-semibold text-gray-800 mb-3">Software Development</h4>
-                  <p class="text-gray-600">Delivering custom software solutions tailored to optimize your operations and improve efficiency.</p>
-                </div>
-              </div>
-              <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div class="p-6 text-center">
-                  <div class="text-orange-500 mb-4 flex justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette w-8 h-8"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="12.5" cy="15.5" r=".5" fill="currentColor"/><path d="M17.8 8.6L14.2 10.2c-.4.1-.7.5-.8.9l-.9 4.2c-.1.4-.4.7-.8.8l-4.3 1.1c-.5.1-.9-.1-1.1-.5l-1.4-2.8c-.2-.4-.2-.8.1-1.2l6.2-5.4c.5-.5 1.2-.6 1.8-.1L18.4 6c.4.4.5 1 .3 1.6L17.8 8.6z"/><path d="M10.8 15.6c-.4.5-.2 1.3.3 1.6l2.1 1.4c.5.3 1.1.2 1.4-.3l4.2-7.2c.4-.7-.4-1.6-1.2-1.1L10.8 15.6z"/></svg>
-                  </div>
-                  <h4 class="text-xl font-semibold text-gray-800 mb-3">Professional IT Training</h4>
-                  <p class="text-gray-600">Get the best hands on training in IT with practical problems and real world projects.</p>
-                </div>
-              </div>
-              <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div class="p-6 text-center">
-                  <div class="text-orange-500 mb-4 flex justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up w-8 h-8"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                  </div>
-                  <h4 class="text-xl font-semibold text-gray-800 mb-3">Digital Marketing</h4>
-                  <p class="text-gray-600">Implementing innovative marketing strategies to boost your visibility and connect with your target audience.</p>
-                </div>
-              </div>
-            </div>
-          </div>        
-          <div class="container-fluid py-5 mb-5 team">
+            <div class="container-fluid services py-5 mb-5">
             <div class="container">
-              <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px; visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                <h3 class="text-orange-600">Our Team</h3>
-                <h3 class="text-3xl font-bold text-center text-orange-600 mb-8">Meet Our Expert Team</h3>
-              </div>
-              <div class="owl-carousel team-carousel wow fadeIn owl-loaded owl-drag" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">  
-                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-959px, 0px, 0px); transition: 1s; width: 1644px;"><div class="owl-item cloned" style="width: 87px; margin-right: 50px;">
-                  
-                  <div class="rounded team-item"> 
-                    <div class="team-content">
-                    <div class="team-img-icon">
-                        <div class="team-img rounded-circle">
-                            <img src="https://www.digimarkconsulting.cm/user/img/densley.png" class="img-fluid rounded-circle" height="250px" alt="">
-                        </div>
-                        <div class="team-name text-center py-3">
-                            <h4 class="">CHATIOH DENSLEY</h4>
-                            <p class="m-0">CREATIVE OFFICER</p>
-                        </div>
-                        <div class="team-icon d-flex justify-content-center pb-4">
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+                <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px; visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                    
+                    <h1>Services Built Specifically For Your Business</h1>
                 </div>
-            </div></div><div class="owl-item cloned" style="width: 87px; margin-right: 50px;"><div class="rounded team-item">
-                <div class="team-content">
-                    <div class="team-img-icon">
-                        <div class="team-img rounded-circle">
-                            <img src="assets\img\Joyce.jpg" class="img-fluid rounded-circle" height="250px" alt="">
-                        </div>
-                        <div class="team-name text-center py-3">
-                            <h4 class="">TAMBA JOYCELINE ATIM</h4>
-                            <p class="m-0">PRODUCT MANAGER</p>
-                        </div>
-                        <div class="team-icon d-flex justify-content-center pb-4">
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                <div class="row g-5 services-inner">
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                        <div class="services-item bg-light">
+                            <div class="p-4 text-center services-content">
+                                <div class="services-content-icon">
+                                    <i class="fa fa-code fa-7x mb-4 text-primary"></i>
+                                    <h4 class="mb-3">Software Development</h4>
+                                    <p class="mb-4">Delivering custom software solutions tailored to optimize your operations and improve efficiency.</p>
+                                    <a href="https://www.digimarkconsulting.cm/user/details/software_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div></div><div class="owl-item cloned" style="width: 87px; margin-right: 50px;"><div class="rounded team-item">
-                <div class="team-content">
-                    <div class="team-img-icon">
-                        <div class="team-img rounded-circle">
-                            <img src="assets\img\joseph.jpg" class="img-fluid rounded-circle" height="250px" alt="">
-                        </div>
-                        <div class="team-name text-center py-3">
-                            <h4 class="">MBALLA FOUDA JOSEPH</h4>
-                            <p class="m-0">AD DIRECTOR</p>
-                        </div>
-                        <div class="team-icon d-flex justify-content-center pb-4">
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
+                        <div class="services-item bg-light">
+                            <div class="p-4 text-center services-content">
+                                <div class="services-content-icon">
+                                    <i class="fas fa-laptop fa-7x mb-4 text-primary"></i>
+                                    <h4 class="mb-3">Professional IT Training/ Reclycling</h4>
+                                    <p class="mb-4">Get the best hands on training in IT with practical problems and real world projects.</p>
+                                    <a href="https://www.digimarkconsulting.cm/user/details/training.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div></div><div class="owl-item" style="width: 87px; margin-right: 50px;"><div class="rounded team-item">
-                <div class="team-content">
-                    <div class="team-img-icon">
-                        <div class="team-img rounded-circle">
-                            <img src="assets\img\Deyou2.jpg" class="rounded-circle" height="250px" alt="">
-                        </div>
-                        <div class="team-name text-center py-3">
-                            <h4 class="">CYRIL DEYOU</h4>
-                            <p class="m-0">CEO</p>
-                        </div>
-                        <div class="team-icon d-flex justify-content-center pb-4">
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
+                        <div class="services-item bg-light">
+                            <div class="p-4 text-center services-content">
+                                <div class="services-content-icon">
+                                    <i class="fa fa-envelope-open fa-7x mb-4 text-primary"></i>
+                                    <h4 class="mb-3">Digital Marketing</h4>
+                                    <p class="mb-4">Implementing innovative marketing strategies to boost your visibility and connect with your target audience.</p>
+                                    <a href="https://www.digimarkconsulting.cm/user/details/digital_marketing_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div></div><div class="owl-item" style="width: 87px; margin-right: 50px;"><div class="rounded team-item">
-                <div class="team-content">
-                    <div class="team-img-icon">
-                        <div class="team-img rounded-circle">
-                            <img src="assets\img\pic.jpg" class="rounded-circle" height="250px" alt="">
-                        </div>
-                        <div class="team-name text-center py-3">
-                            <h4 class="">KANJO ELKAMIRA NDI</h4>
-                            <p class="m-0">COO</p>
-                        </div>
-                        <div class="team-icon d-flex justify-content-center pb-4">
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                        <div class="services-item bg-light">
+                            <div class="p-4 text-center services-content">
+                                <div class="services-content-icon">
+                                    <i class="fas fa-user-secret fa-7x mb-4 text-primary"></i>
+                                    <h4 class="mb-3">Network and Security</h4>
+                                    <p class="mb-4">At DigiMark Consulting Sarl, we offer top-tier network and security services to help businesses safeguard their digital assets</p>
+                                    <a href="https://www.digimarkconsulting.cm/user/details/network_and_security_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div></div><div class="owl-item" style="width: 87px; margin-right: 50px;"><div class="rounded team-item">
-                <div class="team-content">
-                    <div class="team-img-icon">
-                        <div class="team-img rounded-circle">
-                            <img src="assets\img\Dylan.jpg" class="img-fluid rounded-circle" height="250px" alt="">
-                        </div>
-                        <div class="team-name text-center py-3">
-                            <h4 class="">DONFACK DYLAN</h4>
-                            <p class="m-0">CTO</p>
-                        </div>
-                        <div class="team-icon d-flex justify-content-center pb-4">
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
+                        <div class="services-item bg-light">
+                            <div class="p-4 text-center services-content">
+                                <div class="services-content-icon">
+                                    <i class="fa fa-external-link-alt fa-7x mb-4 text-primary"></i>
+                                    <h4 class="mb-3">Graphic and UI/UX Design</h4>
+                                    <p class="mb-4">Creating stunning visuals and branding solutions that communicate your message effectively.</p>
+                                    <a href="https://www.digimarkconsulting.cm/user/details/graphics_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
+                        <div class="services-item bg-light">
+                            <div class="p-4 text-center services-content">
+                                <div class="services-content-icon">
+                                    <i class="fas fa-chart-bar fa-7x mb-4 text-primary"></i>
+                                    <h4 class="mb-3">Data Sciences/Analysis</h4>
+                                    <p class="mb-4">At DigiMark Consulting Sarl, we help businesses unlock the power of data with our comprehensive data science and analysis services</p>
+                                    <a href="https://www.digimarkconsulting.cm/user/details/data_sciences.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="services-item bg-light">
+                            
+                        </div>
+                    </div>
+                
                 </div>
             </div>
         </div>
+                
+        <div class="container-fluid py-5 mb-5 team">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
+      <h3 class="text-orange-600">Our Team</h3>
+      <h3 class="text-3xl font-bold text-center text-orange-600 mb-8">Meet Our Expert Team</h3>
     </div>
+
+    <div class="owl-carousel team-carousel wow fadeIn" data-wow-delay=".5s">
+      
+      <!-- Team Member 1 -->
+      <div class="rounded team-item">
+        <div class="team-content">
+          <div class="team-img-icon">
+            <div class="team-img rounded-circle">
+              <img src="https://www.digimarkconsulting.cm/user/img/densley.png" class="img-fluid rounded-circle" height="250px" alt="">
+            </div>
+            <div class="team-name text-center py-3">
+              <h4>CHATIOH DENSLEY</h4>
+              <p class="m-0">CREATIVE OFFICER</p>
+            </div>
+            <div class="team-icon d-flex justify-content-center pb-4">
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="rounded team-item">
+        <div class="team-content">
+          <div class="team-img-icon">
+            <div class="team-img rounded-circle">
+              <img src="assets/img/Joyce.jpg" class="img-fluid rounded-circle" height="250px" alt="">
+            </div>
+            <div class="team-name text-center py-3">
+              <h4>TAMBA JOYCELINE ATIM</h4>
+              <p class="m-0">PRODUCT MANAGER</p>
+            </div>
+            <div class="team-icon d-flex justify-content-center pb-4">
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="rounded team-item">
+        <div class="team-content">
+          <div class="team-img-icon">
+            <div class="team-img rounded-circle">
+              <img src="assets/img/Deyou2.jpg" class="rounded-circle" height="250px" alt="">
+            </div>
+            <div class="team-name text-center py-3">
+              <h4>CYRIL DEYOU</h4>
+              <p class="m-0">CEO</p>
+            </div>
+            <div class="team-icon d-flex justify-content-center pb-4">
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 4 -->
+      <div class="rounded team-item">
+        <div class="team-content">
+          <div class="team-img-icon">
+            <div class="team-img rounded-circle">
+              <img src="assets/img/pic.jpg" class="rounded-circle" height="250px" alt="">
+            </div>
+            <div class="team-name text-center py-3">
+              <h4>KANJO ELKAMIRA NDI</h4>
+              <p class="m-0">COO</p>
+            </div>
+            <div class="team-icon d-flex justify-content-center pb-4">
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 5 -->
+      <div class="rounded team-item">
+        <div class="team-content">
+          <div class="team-img-icon">
+            <div class="team-img rounded-circle">
+              <img src="assets/img/Dylan.jpg" class="img-fluid rounded-circle" height="250px" alt="">
+            </div>
+            <div class="team-name text-center py-3">
+              <h4>DONFACK DYLANE</h4>
+              <p class="m-0">CTO</p>
+            </div>
+            <div class="team-icon d-flex justify-content-center pb-4">
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- End of Owl Carousel -->
+  </div>
 </div>
+
+           
+
 
   <!-- JS Libraries -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -576,36 +796,70 @@
         </div>
       </section>
 
-      <section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
-              <p class="text-xl mb-8">
-                Join hundreds of satisfied clients who have revolutionized their operations with our cutting-edge IT solutions and professional training programs.
-              </p>
-              <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-6 h-6"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.896a8 8 0 1 0-.965 1.13l-4.225 4.225-1.414-1.414L14.063 12z"/></svg>
-                  <span>Award-winning development team</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-6 h-6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>200+ students successfully trained</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target w-6 h-6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                  <span>99% client satisfaction rate</span>
-                </div>
-              </div>
-              <button class="mt-8 bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg rounded-md font-semibold">
-                Get Started Today
-              </button>
-            </div>
-            
+     <section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">Discover Digimark Consulting</h2>
+        <p class="text-xl mb-8">
+          Digimark is a leading IT consulting firm specializing in digital transformation, software development, and professional training. We empower businesses and individuals with innovative tech solutions tailored to the African market.
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-award w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.896a8 8 0 1 0-.965 1.13l-4.225 4.225-1.414-1.414L14.063 12z"/></svg>
+            <span>Trusted by top institutions and startups</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Expert-led training programs</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-target w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>Results-driven digital solutions</span>
           </div>
         </div>
-      </section>
+        <a href="https://www.digimarkconsulting.cm" target="_blank">
+          <button class="mt-8 bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg rounded-md font-semibold">
+            Visit Digimark Website
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">Our Partners</h2>
+        <p class="text-xl mb-8">
+          Digimark IT has partners within and out of the country
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-award w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.896a8 8 0 1 0-.965 1.13l-4.225 4.225-1.414-1.414L14.063 12z"/></svg>
+            <span>Trusted by top institutions and startups</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Expert-led training programs</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-target w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>Results-driven digital solutions</span>
+          </div>
+        </div>
+        <a href="https://www.digimarkconsulting.cm" target="_blank">
+          <button class="mt-8 bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg rounded-md font-semibold">
+            Visit Digimark Website
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
