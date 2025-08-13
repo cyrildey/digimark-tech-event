@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "description": "Projects associated with intern profile submissions. Store and retrieve instead of persisting projects in the SQL database.",
+    "version": 1
+  },
+  "projects": [
+    {
+      "intern_profile_id": 1,
+      "project_title": "",
+      "project_description": "",
+      "project_image_url": "",
+      "tech_stack": [],
+      "project_duration": "",
+      "project_role": "",
+      "demo_url": "",
+      "source_url": "",
+      "created_at": ""
+    }
+  ]
+}
+

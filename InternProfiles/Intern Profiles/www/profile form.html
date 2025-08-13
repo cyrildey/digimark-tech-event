@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Favicon -->
+  <!-- <link rel="icon" type="image/jpg" href="logo.jpg" /> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digimark Intern Profile - Interactive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    .sidebar-collapsed { width: 4rem; }
+    .sidebar-expanded { width: 18rem; }
+    .transition-width { transition: width 0.3s; }
+    .webgl-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+    .reduced-motion * { transition: none !important; animation: none !important; }
+    
+    /* Custom color overrides */
+    .bg-orange-50 { background-color: #fff7ed; }
+    .bg-orange-100 { background-color: #ffedd5; }
+    .bg-orange-200 { background-color: #fed7aa; }
+    .bg-orange-300 { background-color: #fdba74; }
+    .bg-orange-400 { background-color: #fb923c; }
+    .bg-orange-500 { background-color: #f97316; }
+    .bg-orange-600 { background-color: #ea580c; }
+    .bg-orange-700 { background-color: #c2410c; }
+    .bg-orange-800 { background-color: #9a3412; }
+    .bg-orange-900 { background-color: #7c2d12; }
+    
+    .text-orange-50 { color: #fff7ed; }
+    .text-orange-100 { color: #ffedd5; }
+    .text-orange-200 { color: #fed7aa; }
+    .text-orange-300 { color: #fdba74; }
+    .text-orange-400 { color: #fb923c; }
+    .text-orange-500 { color: #f97316; }
+    .text-orange-600 { color: #ea580c; }
+    .text-orange-700 { color: #c2410c; }
+    .text-orange-800 { color: #9a3412; }
+    .text-orange-900 { color: #7c2d12; }
+    
+    .border-orange-500 { border-color: #f97316; }
+    .border-orange-600 { border-color: #ea580c; }
+    
+    .hover\:bg-orange-100:hover { background-color: #ffedd5; }
+    .hover\:bg-orange-600:hover { background-color: #ea580c; }
+    
+    .bg-red-600 { background-color: #dc2626; }
+    .bg-red-700 { background-color: #b91c1c; }
+    .bg-red-800 { background-color: #991b1b; }
+    .bg-red-900 { background-color: #7f1d1d; }
+    
+    .text-red-600 { color: #dc2626; }
+    .text-red-700 { color: #b91c1c; }
+    .text-red-800 { color: #991b1b; }
+    .text-red-900 { color: #7f1d1d; }
+
+    /* Interactive styles */
+    .editable {
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+    
+    .editable:hover {
+      background-color: rgba(251, 146, 60, 0.1);
+      box-shadow: 0 0 0 1px rgba(251, 146, 60, 0.3);
+    }
+    
+    .editable.editing {
+      background-color: rgba(251, 146, 60, 0.1);
+      box-shadow: 0 0 0 2px #f97316;
+    }
+    
+    .edit-input {
+      background: white;
+      border: 2px solid #f97316;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      width: 100%;
+      min-width: 200px;
+    }
+    
+    .edit-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.3);
+    }
+    
+    .edit-tooltip {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      background: #f97316;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .editable:hover .edit-tooltip {
+      opacity: 1;
+    }
+    
+    .skill-tag.editable {
+      display: inline-block;
+      margin: 2px;
+    }
+    
+    .add-skill-btn {
+      background: rgba(251, 146, 60, 0.2);
+      border: 2px dashed #f97316;
+      color: #f97316;
+      padding: 4px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+    
+    .add-skill-btn:hover {
+      background: rgba(251, 146, 60, 0.3);
+      border-color: #ea580c;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      /* Navigation adjustments */
+      .nav-container {
+        padding: 0 1rem;
+      }
+      
+      /* Hero section mobile adjustments */
+      .hero-container {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        min-height: auto;
+      }
+      
+      .profile-photo-container {
+        min-width: 200px;
+        min-height: 200px;
+      }
+      
+      .profile-photo-frame {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .profile-photo {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .hero-info {
+        text-align: center;
+        gap: 0.75rem;
+      }
+      
+      .hero-info input {
+        font-size: 1.25rem;
+        text-align: center;
+      }
+      
+      .hero-info textarea {
+        font-size: 0.875rem;
+        text-align: center;
+      }
+      
+      /* Social media links mobile adjustments */
+      .social-links-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+      
+      .social-link {
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-shrink: 0;
+      }
+      
+      .social-input {
+        width: 100%;
+        max-width: 180px;
+        font-size: 0.75rem;
+      }
+      
+      /* Section containers mobile adjustments */
+      .section-container {
+        padding: 1.5rem;
+        margin: 1rem 0;
+        min-height: auto;
+      }
+      
+      .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+      
+      /* About section mobile adjustments */
+      .about-content {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .skills-container {
+        gap: 0.75rem;
+      }
+      
+      .skill-input {
+        font-size: 0.75rem;
+        padding: 0.375rem;
+      }
+      
+      /* About internship specific mobile adjustments */
+      .about-content .flex-1 {
+        width: 100%;
+      }
+      
+      .about-content textarea {
+        font-size: 0.875rem;
+        min-height: 80px;
+      }
+      
+      .about-content label {
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      /* Skills section mobile adjustments */
+      .about-content .flex-wrap {
+        gap: 0.5rem;
+      }
+      
+      .about-content .bg-white\/50 {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+      }
+      
+      .about-content .bg-white\/50 img {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+      
+      .about-content .bg-white\/50 span {
+        font-size: 0.75rem;
+      }
+      
+      /* Dropdown selects mobile adjustments */
+      .about-content select {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        min-height: 2.5rem;
+      }
+      
+      .about-content .flex.items-center.gap-3 {
+        gap: 0.5rem;
+      }
+      
+      .about-content .space-y-2 > div {
+        margin-bottom: 0.5rem;
+      }
+      
+      /* Projects section mobile adjustments */
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .project-card {
+        margin-bottom: 0.75rem;
+      }
+      
+      .project-overlay {
+        padding: 0.75rem;
+      }
+      
+      .project-overlay input,
+      .project-overlay textarea {
+        font-size: 0.75rem;
+      }
+      
+      /* Experience section mobile adjustments */
+      .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .experience-item {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+      }
+      
+      .experience-item img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      
+      /* Footer mobile adjustments */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      
+      .footer-section {
+        margin-bottom: 0.75rem;
+      }
+      
+      /* Form inputs mobile adjustments */
+      input, textarea, select {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+      }
+      
+      /* Submit button mobile adjustments */
+      .submit-section {
+        padding: 1rem;
+      }
+      
+      .submit-button {
+        width: 100%;
+        max-width: 250px;
+        padding: 0.75rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Extra small screens */
+      .hero-container {
+        padding: 1rem;
+        gap: 1rem;
+      }
+      
+      .profile-photo-container {
+        min-width: 150px;
+        min-height: 150px;
+      }
+      
+      .profile-photo-frame {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .profile-photo {
+        width: 130px;
+        height: 130px;
+      }
+      
+      .hero-info input {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .social-links-container {
+        gap: 0.25rem;
+      }
+      
+      .social-link {
+        width: 2rem;
+        height: 2rem;
+      }
+      
+      .social-input {
+        max-width: 140px;
+        font-size: 0.625rem;
+      }
+      
+      .section-container {
+        padding: 1rem;
+        margin: 0.75rem 0;
+      }
+      
+      /* About section extra small screen adjustments */
+      .about-content {
+        gap: 1rem;
+      }
+      
+      .about-content textarea {
+        font-size: 0.75rem;
+        min-height: 60px;
+      }
+      
+      .about-content label {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+      
+      .about-content .bg-white\/50 {
+        padding: 0.375rem;
+        font-size: 0.625rem;
+      }
+      
+      .about-content .bg-white\/50 img {
+        width: 1rem;
+        height: 1rem;
+      }
+      
+      .about-content .bg-white\/50 span {
+        font-size: 0.625rem;
+      }
+      
+      .skill-input {
+        font-size: 0.625rem;
+        padding: 0.25rem;
+      }
+      
+      /* Dropdown selects extra small screen adjustments */
+      .about-content select {
+        font-size: 0.625rem;
+        padding: 0.375rem;
+        min-height: 2rem;
+      }
+      
+      .about-content .flex.items-center.gap-3 {
+        gap: 0.25rem;
+      }
+      
+      .about-content .space-y-2 > div {
+        margin-bottom: 0.375rem;
+      }
+      
+      /* Extra small screen section spacing */
+      section {
+        padding: 0.75rem 0;
+      }
+      
+      section + section {
+        margin-top: 1rem;
+      }
+      
+      .section-container {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+      }
+      
+      /* Ensure project cards don't overlap on very small screens */
+      .project-card {
+        margin-bottom: 1rem;
+      }
+      
+      .projects-grid {
+        gap: 0.75rem;
+      }
+    }
+
+    /* Tablet adjustments */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .hero-container {
+        gap: 2rem;
+        padding: 2rem;
+      }
+      
+      .profile-photo-container {
+        min-width: 250px;
+        min-height: 250px;
+      }
+      
+      .profile-photo-frame {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .profile-photo {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-container {
+        padding: 2rem;
+        margin: 1.5rem 0;
+      }
+    }
+
+    /* Ensure uniform spacing and compact sections */
+    .section-container {
+      margin: 1.5rem 0;
+      padding: 2rem;
+      min-height: auto;
+    }
+    
+    /* Reduce section heights for better mobile viewing */
+    section {
+      min-height: auto;
+      padding: 2rem 0;
+    }
+    
+    /* Ensure proper spacing between sections */
+    section + section {
+      margin-top: 2rem;
+    }
+    
+    /* Make sections more compact */
+    .hero-container,
+    .about-content,
+    .projects-grid,
+    .experience-grid {
+      gap: 1.5rem;
+    }
+    
+    /* Uniform card spacing */
+    .project-card,
+    .experience-item {
+      margin-bottom: 1rem;
+    }
+    
+    /* Compact form elements */
+    input, textarea, select {
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Improve form input accessibility */
+    input:focus, textarea:focus, select:focus {
+      outline: 2px solid #f97316;
+      outline-offset: 2px;
+    }
+
+    /* Better touch targets for mobile */
+    @media (max-width: 768px) {
+      button, a, input[type="file"] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      
+      /* Reduce section padding further on mobile */
+      .section-container {
+        padding: 1rem;
+        margin: 0.75rem 0;
+      }
+      
+      /* Compact spacing between sections */
+      section {
+        padding: 1rem 0;
+      }
+      
+      /* Ensure proper spacing between sections on mobile */
+      section + section {
+        margin-top: 1.5rem;
+      }
+      
+      /* Reduce gaps in layouts */
+      .hero-container,
+      .about-content,
+      .projects-grid,
+      .experience-grid {
+        gap: 1rem;
+      }
+      
+      /* Prevent project cards from overlapping */
+      .project-card {
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Upload instruction spans mobile adjustments */
+      .profile-photo-container span {
+        font-size: 0.625rem;
+        padding: 0.25rem 0.5rem;
+        bottom: -0.5rem;
+      }
+      
+      .hero-info span {
+        font-size: 0.625rem;
+        padding: 0.25rem 0.5rem;
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* Skill grid mobile adjustments */
+    .about-content .grid {
+      gap: 0.5rem;
+    }
+    
+    .about-content .grid > label {
+      padding: 0.5rem;
+    }
+    
+    .about-content .grid > label img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    
+    .about-content .grid > label span {
+      font-size: 0.625rem;
+    }
+    
+    /* Selected state styling */
+    .about-content .grid > label input:checked + img + span {
+      color: #ea580c;
+    }
+
+    /* Skill grid extra small screen adjustments */
+    .about-content .grid {
+      gap: 0.25rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .about-content .grid > label {
+      padding: 0.375rem;
+    }
+    
+    .about-content .grid > label img {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    
+    .about-content .grid > label span {
+      font-size: 0.5rem;
+    }
+    
+    /* Extra small screen section spacing */
+    section {
+      padding: 0.75rem 0;
+    }
+    
+    section + section {
+      margin-top: 1rem;
+    }
+    
+    .section-container {
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+
+<body class="bg-orange-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex">
+  <!-- Responsive Navigation Bar -->
+  <header>
+    <nav class="bg-orange-100/80 backdrop-blur-md border-b border-orange-200 fixed w-full z-30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 nav-container">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center gap-4">
+            <img src="dims1.jpg" alt="Logo" class="w-10 h-10 rounded-full bg-white border-2 border-orange-600 shadow mr-2" />
+            <span class="font-bold text-lg text-orange-600">Digimark Consulting</span>
+          </div>
+          <div class="hidden md:flex flex-1 justify-center gap-2">
+            <a href="#hero" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              About me
+            </a>
+            <a href="#about" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17a2.25 2.25 0 01-2.25-2.25V9.25A2.25 2.25 0 019.75 7h4.5A2.25 2.25 0 0116.5 9.25v5.5A2.25 2.25 0 0114.25 17h-4.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 7V5.75A2.25 2.25 0 0111.25 3.5h1.5A2.25 2.25 0 0115 5.75V7"/></svg>
+              Internship
+            </a>
+            <a href="#projects" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m-6 4h6a2 2 0 002-2v-6a2 2 0 00-2-2h-6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+              Projects
+            </a>
+            <a href="#experience" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-9-5m9 5l9-5"/></svg>
+              Experience
+            </a>
+            <a href="#contact" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12l-4-4-4 4m8 0v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V6a2 2 0 00-2-2H6a2 2 0 00-2 2v6"/></svg>
+              Contact
+            </a>
+          </div>
+        
+        </div>
+      </div>
+      <!-- Mobile Sidebar -->
+      <div id="mobileSidebar" class="fixed top-0 left-0 h-full w-64 bg-orange-100/80 backdrop-blur-md shadow-lg z-40 transform -translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+        <div class="flex items-center justify-between p-4 border-b border-orange-200">
+          <span class="font-bold text-lg text-orange-600">Chestly</span>
+          <button id="closeMobileMenu" class="p-2 rounded hover:bg-orange-200" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+        <input id="mobileSearchBar" type="text" placeholder="Search..." class="m-4 px-3 py-2 rounded bg-orange-200 focus:outline-none" />
+        <nav class="flex-1 overflow-y-auto">
+          <a href="#hero" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Hero</a>
+          <a href="#about" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">About</a>
+          <a href="#projects" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Projects</a>
+          <a href="#experience" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Experience</a>
+          <a href="#contact" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Contact</a>
+        </nav>
+      </div>
+      <div id="mobileSidebarOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-30 hidden md:hidden"></div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 pt-16 transition-all duration-300 bg-orange-50 space-y-0" id="mainContent">
+    <!-- WebGL/Canvas Background -->
+    <canvas id="webglBg" class="webgl-bg"></canvas>
+
+    <div class=" mt-8"        >
+           <h2 class="text-4xl font-bold mb-6 text-orange-900 text-center section-title">Digimark Intern Submission Form </h2>
+
+    </div>
+    
+    <!-- Form Wrapper -->
+    <form id="internProfileForm" method="POST" action="/submit-profile" enctype="multipart/form-data" class="space-y-0">
+        <!-- Hero Section (Landing Page) -->
+        <section class="about flex flex-col justify-center items-center py-12" id="hero">
+        <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center hover:scale-105 transition-transform w-full max-w-4xl mx-auto hero-container">
+              <!-- Intern Photo in Square Frame -->
+              <div class="flex-shrink-0 relative flex items-center justify-center profile-photo-container" style="min-width:320px; min-height:320px;">
+                <div class="bg-orange-100 dark:bg-orange-900 border-4 border-orange-500 rounded-xl shadow-lg flex items-center justify-center w-72 h-72 relative overflow-hidden profile-photo-frame">
+                  <!-- Profile Image Display -->
+                  <img id="profilePreview" src="profile.png" alt="Intern Photo" class="object-cover w-64 h-64 rounded-xl border-2 border-white shadow profile-photo" />
+                  
+                  <!-- Upload Overlay -->
+                  <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-xl">
+                    <div class="text-center text-white">
+                      <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                      </svg>
+                      <p class="text-sm font-medium">Click to upload</p>
+                    </div>
+                  </div>
+                  
+                  <!-- Hidden File Input -->
+                  <input type="file" name="profile_picture" id="profilePictureInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                </div>
+                <!-- Profile Upload Instruction -->
+                <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-orange-600 font-medium bg-orange-100 px-2 py-1 rounded-md shadow-sm">
+                  📷 Click to upload your profile picture
+                </span>
+              </div>
+              <!-- Intern Info -->
+              <div class="flex-1 flex flex-col gap-4 hero-info">
+                <input type="text" name="intern_name" placeholder="Enter intern name" class="text-3xl font-bold text-orange-700 bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1" />
+                <input type="text" name="intern_position" placeholder="Enter position (e.g., Software Engineering Intern)" class="text-lg text-gray-900 font-semibold bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1" />
+                <input type="text" name="intern_school" placeholder="Enter school name and location" class="text-base text-gray-800 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1" />
+                <textarea name="intern_bio" placeholder="Enter a brief bio about the intern" class="text-base text-gray-800 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 resize-none" rows="3"></textarea>
+                <!-- Social Media Buttons -->
+                <div class="flex gap-3 mt-2 social-links-container">
+                  <a href="#" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-gray-800 dark:text-gray-100 p-2 rounded-full shadow transition social-link" title="GitHub" data-platform="github">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.45.11-3.02 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.57.23 2.73.12 3.02.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.7.42.36.8 1.09.8 2.2v3.26c0 .31.21.67.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
+                  </a>
+                  <input type="url" name="github_url" placeholder="GitHub URL" class="social-input hidden bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-gray-800 dark:text-gray-100 p-2 rounded-full shadow transition flex-1 min-w-0 text-sm" data-platform="github" />
+                  
+                  <a href="#" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-blue-700 dark:text-blue-300 p-2 rounded-full shadow transition social-link" title="Facebook" data-platform="facebook">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.92.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.674V1.326C24 .6 23.4 0 22.675 0"/></svg>
+                  </a>
+                  <input type="url" name="facebook_url" placeholder="Facebook URL" class="social-input hidden bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-blue-700 dark:text-blue-300 p-2 rounded-full shadow transition flex-1 min-w-0 text-sm" data-platform="facebook" />
+                  
+                  <a href="#" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-blue-600 dark:text-blue-400 p-2 rounded-full shadow transition social-link" title="LinkedIn" data-platform="linkedin">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-10h3v10zm-1.5-11.25c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.25 11.25h-3v-5.5c0-1.32-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.91v5.59h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/></svg>
+                  </a>
+                  <input type="url" name="linkedin_url" placeholder="LinkedIn URL" class="social-input hidden bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-blue-600 dark:text-blue-400 p-2 rounded-full shadow transition flex-1 min-w-0 text-sm" data-platform="linkedin" />
+                  
+                  <a href="#" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-black dark:text-white p-2 rounded-full shadow transition social-link" title="X" data-platform="twitter">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.53 7.477l-4.273 4.273 4.273 4.273-1.06 1.06-4.273-4.273-4.273 4.273-1.06-1.06 4.273-4.273-4.273-4.273 1.06-1.06 4.273 4.273 4.273-4.273z"/></svg>
+                  </a>
+                  <input type="url" name="twitter_url" placeholder="X/Twitter URL" class="social-input hidden bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-black dark:text-white p-2 rounded-full shadow transition flex-1 min-w-0 text-sm" data-platform="twitter" />
+                  
+                  <a href="#" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-pink-600 dark:text-pink-400 p-2 rounded-full shadow transition social-link" title="Instagram" data-platform="instagram">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.131 4.602.425 3.635 1.392 2.668 2.359 2.374 3.532 2.315 4.809.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.059 1.277.353 2.45 1.32 3.417.967.967 2.14 1.261 3.417 1.32C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.277-.059 2.45-.353 3.417-1.32.967-.967 1.261-2.14 1.32-3.417.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.277-.353-2.45-1.32-3.417-.967-.967-2.14-1.261-3.417-1.32C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+                  </a>
+                  <input type="url" name="instagram_url" placeholder="Instagram URL" class="social-input hidden bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-pink-600 dark:text-pink-400 p-2 rounded-full shadow transition flex-1 min-w-0 text-sm" data-platform="instagram" />
+                  
+                  <a href="#" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-red-600 dark:text-red-400 p-2 rounded-full shadow transition social-link" title="Email" data-platform="email">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/></svg>
+                  </a>
+                  <input type="email" name="intern_email" placeholder="Email address" class="social-input hidden bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-red-600 dark:text-red-400 p-2 rounded-full shadow transition flex-1 min-w-0 text-sm" data-platform="email" />
+                </div>
+                <!-- Download CV Button -->
+                <div class="mt-4">
+                  <input type="file" name="cv_file" accept=".pdf,.doc,.docx" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-lg shadow transition cursor-pointer" />
+                  <!-- CV Upload Instruction -->
+                  <span class="block mt-2 text-xs text-orange-600 font-medium bg-orange-100 px-2 py-1 rounded-md shadow-sm text-center">
+                    📄 Upload your CV/Resume (PDF, DOC, DOCX)
+                  </span>
+                </div>
+              </div>
+            </div>
+        </section>
+
+       
+       
+        <!-- About Internship -->
+        <section id="about" class="flex flex-col justify-center items-center py-12">
+          <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-5xl hover:scale-105 transition-transform section-container">
+            <h2 class="text-4xl font-bold mb-6 text-orange-900 text-center section-title">About The Internship</h2>
+            <div class="w-full flex flex-col lg:flex-row gap-8 items-start about-content">
+            <!-- Bio and Personal Touch -->
+            <div class="flex-1 flex flex-col gap-4">
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-orange-800 mb-2">Internship Description</label>
+                <textarea name="internship_description" placeholder="Describe the internship program and experience" class="text-lg text-gray-900 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 resize-none w-full" rows="4"></textarea>
+              </div>
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-orange-800 mb-2">Personal Quote</label>
+                <textarea name="internship_quote" placeholder="Enter a personal quote about the internship experience" class="text-base text-gray-800 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 resize-none w-full" rows="3"></textarea>
+              </div>
+            </div>
+            <!-- Skills Gained -->
+            <div class="flex-1 flex flex-col gap-4">
+              <h3 class="text-2xl font-semibold mb-4 text-orange-800 font-bold">Skills Gained</h3>
+              
+              <!-- Languages -->
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-orange-800 mb-2">Languages:</label>
+                <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="HTML5" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">HTML5</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="CSS3" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">CSS3</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="JavaScript" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">JavaScript</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="TypeScript" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">TypeScript</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Python" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Python</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Java" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Java</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="C" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">C</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="C++" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">C++</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="C#" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">C#</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="PHP" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">PHP</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Ruby" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" alt="Ruby" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Ruby</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Go" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Go</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Rust" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg" alt="Rust" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Rust</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Swift" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="Swift" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Swift</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Kotlin" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Kotlin</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="languages[]" value="Dart" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Dart</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Frameworks -->
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-orange-800 mb-2">Frameworks:</label>
+                <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="React" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">React</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Vue.js" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Vue.js</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Angular" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Angular</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Svelte" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" alt="Svelte" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Svelte</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Next.js" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Next.js</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Express.js" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Express.js</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Node.js" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Node.js</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Django" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Django</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Flask" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Flask</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Laravel" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" alt="Laravel" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Laravel</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Spring Boot" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Spring Boot</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="ASP.NET" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt="ASP.NET" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">ASP.NET</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Bootstrap" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Bootstrap</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Tailwind CSS" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-8 h-8 mb-2 bg-white rounded">
+                    <span class="text-xs font-medium text-center">Tailwind</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="frameworks[]" value="Material-UI" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material-UI" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Material-UI</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Tools -->
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-orange-800 mb-2">Tools:</label>
+                <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Git" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Git</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="GitHub" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-8 h-8 mb-2 bg-white rounded">
+                    <span class="text-xs font-medium text-center">GitHub</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="GitLab" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">GitLab</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="VS Code" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">VS Code</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="IntelliJ IDEA" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">IntelliJ</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Android Studio" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Android Studio</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Xcode" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg" alt="Xcode" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Xcode</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="MySQL" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">MySQL</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="PostgreSQL" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">PostgreSQL</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="MongoDB" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">MongoDB</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Docker" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Docker</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="AWS" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">AWS</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Figma" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Figma</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Adobe Photoshop" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" alt="Adobe Photoshop" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Photoshop</span>
+                  </label>
+                  <label class="flex flex-col items-center p-3 bg-white/50 rounded-lg cursor-pointer hover:bg-orange-100 transition-colors">
+                    <input type="checkbox" name="tools[]" value="Postman" class="sr-only">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" class="w-8 h-8 mb-2">
+                    <span class="text-xs font-medium text-center">Postman</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+         
+         
+          <!-- Projects Section -->
+        <section id="projects" class="flex flex-col justify-center items-center py-12">
+          <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-6xl hover:scale-105 transition-transform section-container">
+            <h2 class="text-4xl font-bold mb-8 text-orange-900 text-center section-title">Projects</h2>
+            <div class="w-full flex justify-center">
+              <!-- Upload Projects Card -->
+              <div class="group relative bg-white/80 backdrop-blur-md rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer w-full max-w-md" id="uploadProjectsCard">
+                <div class="p-8 text-center">
+                  <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-semibold text-orange-800 mb-2">Add Your Projects</h3>
+                  <p class="text-gray-600 text-sm">Click to upload and showcase your projects</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Projects List (Hidden initially) -->
+            <div id="projectsList" class="w-full mt-8 hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 projects-grid" id="projectsContainer">
+                <!-- Projects will be dynamically added here -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Project Modal -->
+        <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+          <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-orange-800">Add New Project</h3>
+                <button id="closeProjectModal" class="text-gray-500 hover:text-gray-700">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </button>
+              </div>
+              
+              <form id="projectForm" class="space-y-4">
+                <!-- Project Image Upload -->
+                <div>
+                  <label class="block text-sm font-semibold text-orange-800 mb-2">Project Image</label>
+                  <div class="border-2 border-dashed border-orange-300 rounded-lg p-6 text-center hover:border-orange-400 transition-colors">
+                    <input type="file" name="project_image" accept="image/*" class="hidden" id="projectImageInput">
+                    <div class="cursor-pointer" onclick="document.getElementById('projectImageInput').click()">
+                      <svg class="w-12 h-12 text-orange-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                      </svg>
+                      <p class="text-sm text-gray-600">Click to upload project image</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Project Title -->
+                <div>
+                  <label class="block text-sm font-semibold text-orange-800 mb-2">Project Title</label>
+                  <input type="text" name="project_title" placeholder="Enter project title" class="w-full px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500" required>
+                </div>
+                
+                <!-- Project Description -->
+                <div>
+                  <label class="block text-sm font-semibold text-orange-800 mb-2">Project Description</label>
+                  <textarea name="project_description" placeholder="Describe your project" rows="4" class="w-full px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none" required></textarea>
+                </div>
+                
+                <!-- Tech Stack -->
+                <div>
+                  <label class="block text-sm font-semibold text-orange-800 mb-2">Tech Stack</label>
+                  <div class="flex flex-wrap gap-2" id="techStackContainer">
+                    <input type="text" name="tech_stack[]" placeholder="Add technology" class="flex-1 px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                  </div>
+                  <button type="button" id="addTechStack" class="mt-2 text-sm text-orange-600 hover:text-orange-700 font-medium">+ Add another technology</button>
+                </div>
+                
+                <!-- Project Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-orange-800 mb-2">Duration</label>
+                    <input type="text" name="project_duration" placeholder="e.g., 2 weeks" class="w-full px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-orange-800 mb-2">Role</label>
+                    <input type="text" name="project_role" placeholder="e.g., Full-stack Developer" class="w-full px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                  </div>
+                </div>
+                
+                <!-- Project Links -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-orange-800 mb-2">Demo URL</label>
+                    <input type="url" name="demo_url" placeholder="https://demo.example.com" class="w-full px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-orange-800 mb-2">Source Code URL</label>
+                    <input type="url" name="source_url" placeholder="https://github.com/username/project" class="w-full px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                  </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-3 pt-4">
+                  <button type="submit" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+                    Add Project
+                  </button>
+                  <button type="button" id="cancelProject" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      
+
+         <!-- Professional Experience & Education Section -->
+        <section id="experience" class="h-screen flex flex-col justify-center items-center py-20">
+          <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-5xl hover:scale-105 transition-transform section-container">
+            <h2 class="text-4xl font-bold mb-8 text-orange-900 text-center section-title">Professional Experience &amp; Education</h2>
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 experience-grid">
+            <!-- Experience -->
+            <div>
+              <h3 class="text-2xl font-semibold mb-4 text-orange-800 font-bold">Experience</h3>
+              <ul class="space-y-6">
+                <li>
+                  <div class="flex items-start gap-4 experience-item">
+                    <img src="digimark.jpg" alt="Company Logo" class="w-12 h-12 rounded shadow">
+                    <div class="flex-1">
+                      <input type="text" name="job_title" placeholder="Job title (e.g., Software Engineering Intern)" class="font-bold text-lg text-orange-800 bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 w-full" />
+                      <span class="text-gray-700 font-medium">@ <input type="text" name="company_name" placeholder="Company name" class="bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-1" /></span>
+                      <input type="text" name="job_duration" placeholder="Duration (e.g., June 2025 – Present)" class="text-sm text-gray-800 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 w-full" />
+                      <textarea name="job_description" placeholder="Job description and responsibilities" class="text-base text-orange-800 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 w-full resize-none" rows="3"></textarea>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Education -->
+            <div>
+              <h3 class="text-2xl font-semibold mb-4 text-red-800 font-bold">Education</h3>
+              <ul class="space-y-6">
+                <li>
+                  <div class="flex items-start gap-4 experience-item">
+                    <img src="iusty.jpg" alt="University Logo" class="w-12 h-12 rounded shadow" loading="lazy" width="48" height="48">
+                    <div class="flex-1">
+                      <input type="text" name="degree" placeholder="Degree (e.g., HND. in Software Engineering)" class="font-bold text-lg text-orange-800 bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 w-full" />
+                      <input type="text" name="education_details" placeholder="School name and years (e.g., Yaounde International Business School, 2023 – 2025)" class="text-sm text-gray-800 font-medium bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500 rounded px-2 py-1 w-full" />
+                    </div>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Submit Button Section -->
+        <section class="py-20 submit-section">
+          <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-2xl mx-auto hover:scale-105 transition-transform section-container">
+            <h2 class="text-3xl font-bold mb-6 text-orange-900 text-center section-title">Submit Profile</h2>
+            <div class="text-center space-y-4">
+              <p class="text-gray-700">Review all the information above and click the button below to submit the intern profile.</p>
+              <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 submit-button">
+                Submit Intern Profile
+              </button>
+              <div id="submissionStatus" class="hidden mt-4 px-4 py-3 rounded-lg text-sm font-medium"></div>
+            </div>
+          </div>
+        </section>
+    </form>
+
+  <!-- Footer with Contact Features & Social Links -->
+   <footer id="contact" class="w-full py-20">
+    <div class="bg-orange-100/80 backdrop-blur-md border-t border-orange-200 shadow-xl p-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Company Info -->
+        <div class="space-y-4"> <h2 class="text-4xl font-bold mb-6 text-orange-900 text-center section-title">About The Internship</h2>
+          <div class="flex items-center gap-2">
+            <img src="dims1.jpg" alt="Logo" class="w-10 h-10 rounded-full bg-white border-2 border-orange-600 shadow" />
+            <span class="font-bold text-lg text-orange-600">Digimark Consulting</span>
+          </div>
+          <p class="text-orange-800 text-sm leading-relaxed">
+            Explore cutting-edge IT solutions designed to elevate your business and drive success in a digital world.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/digimark.cm" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.92.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.674V1.326C24 .6 23.4 0 22.675 0"/>
+              </svg>
+            </a>
+            <a href="https://x.com/i/flow/login?redirect_after_login=%2FDConsultin54749" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/digimark_consulting01/?igsh=MXRtMngwMm9rdTZsNQ%3D%3D#" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.131 4.602.425 3.635 1.392 2.668 2.359 2.374 3.532 2.315 4.809.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.059 1.277.353 2.45 1.32 3.417.967.967 2.14 1.261 3.417 1.32C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.277-.059 2.45-.353 3.417-1.32.967-.967 1.261-2.14 1.32-3.417.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.277-.353-2.45-1.32-3.417-.967-.967-2.14-1.261-3.417-1.32C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-10h3v10zm-1.5-11.25c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.25 11.25h-3v-5.5c0-1.32-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.91v5.59h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Our Company -->
+        <div class="space-y-4">
+          <h3 class="text-orange-600 font-bold text-lg">Our Company</h3>
+          <ul class="space-y-2">
+            <li><a href="https://www.digimarkconsulting.cm/about" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              About us
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/services" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Our Services
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/projects" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Our Projects
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/projects" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Latest Blog
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/contact" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Contact us
+            </a></li>
+          </ul>
+        </div>
+
+        <!-- Our Services -->
+        <div class="space-y-4">
+          <h3 class="text-orange-600 font-bold text-lg">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="https://www.digimarkconsulting.cm/user/details/training.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Professional IT Training
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/software_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Software Development
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/data_sciences.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Data Sciences
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/digital_marketing_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Digital Marketing
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/graphics_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              UI/UX Design
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/network_and_security_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Network and Security
+            </a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us -->
+        <div class="space-y-4">
+          <h3 class="text-orange-600 font-bold text-lg">Contact Us</h3>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">Carrefour TKC, Yaounde, Cameroon</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">Carrefour L'amitie, Ekie, Yaounde, Cameroon</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">+237690550568</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">training@digimarkconsulting.cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-orange-200 pt-6 text-center">
+        <p class="text-orange-700 text-sm">&copy; DigiMark Consulting Sarl 2025, All right reserved.</p>
+      </div>
+
+      <!-- Scroll to Top Button -->
+      <button id="scrollToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center opacity-0 pointer-events-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Form Handling -->
+  <script src="assets/js/apiConfig.js"></script>
+  <script>
+    // Form submission handling
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('internProfileForm');
+      
+      // Profile picture upload handling
+      const profilePictureInput = document.getElementById('profilePictureInput');
+      const profilePreview = document.getElementById('profilePreview');
+      
+      if (profilePictureInput && profilePreview) {
+        profilePictureInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+              alert('Please select an image file.');
+              return;
+            }
+            
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+              alert('File size must be less than 5MB.');
+              return;
+            }
+            
+            // Create preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              profilePreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+      
+      // Social media link interactions
+      const socialLinks = document.querySelectorAll('.social-link');
+      const socialInputs = document.querySelectorAll('.social-input');
+      
+      socialLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const platform = this.getAttribute('data-platform');
+          const correspondingInput = document.querySelector(`.social-input[data-platform="${platform}"]`);
+          
+          // Hide all other inputs first
+          socialInputs.forEach(input => {
+            input.classList.add('hidden');
+          });
+          
+          // Show the corresponding input
+          if (correspondingInput) {
+            correspondingInput.classList.remove('hidden');
+            correspondingInput.focus();
+            
+            // Auto-hide input after 5 seconds of inactivity
+            setTimeout(() => {
+              if (!correspondingInput.matches(':focus')) {
+                correspondingInput.classList.add('hidden');
+              }
+            }, 5000);
+          }
+        });
+      });
+      
+      // Hide input when clicking outside or pressing Escape
+      document.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('social-link') && !e.target.classList.contains('social-input')) {
+          socialInputs.forEach(input => {
+            input.classList.add('hidden');
+          });
+        }
+      });
+      
+      // Hide input on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          socialInputs.forEach(input => {
+            input.classList.add('hidden');
+          });
+        }
+      });
+      
+      // Hide input when it loses focus (after a short delay)
+      socialInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          setTimeout(() => {
+            if (!this.matches(':focus')) {
+              this.classList.add('hidden');
+            }
+          }, 200);
+        });
+      });
+      
+      // API endpoints (adjust if your backend routes differ)
+      const API_BASE = window.API_BASE || '';
+      const API = {
+        profile: `${API_BASE}/api/intern-profiles`,          // creates InternProfiles row, returns { id, ... }
+        projects: `${API_BASE}/api/intern-projects`          // writes projects JSON for a given intern_profile_id
+      };
+
+      // In-memory projects collected from the modal
+      const projectsData = [];
+
+      // Helper to read a File as a data URL (for JSON fallback if backend doesn't store files)
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          if (!file) return resolve(null);
+          const reader = new FileReader();
+          reader.onload = e => resolve(e.target.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Gather checked values into array
+      function collectChecked(name) {
+        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+      }
+
+      const statusEl = document.getElementById('submissionStatus');
+
+      function setStatus(type, message) {
+        if (!statusEl) return;
+        statusEl.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'border', 'border-green-300', 'bg-red-100', 'text-red-800', 'border-red-300');
+        if (type === 'success') {
+          statusEl.classList.add('bg-green-100', 'text-green-800', 'border', 'border-green-300');
+        } else {
+          statusEl.classList.add('bg-red-100', 'text-red-800', 'border', 'border-red-300');
+        }
+        statusEl.textContent = message;
+        statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
+
+        try {
+          // Build multipart form for profile data (DB)
+          const formData = new FormData();
+
+          formData.append('intern_name', form.elements['intern_name']?.value || '');
+          formData.append('intern_position', form.elements['intern_position']?.value || '');
+          formData.append('intern_school', form.elements['intern_school']?.value || '');
+          formData.append('intern_bio', form.elements['intern_bio']?.value || '');
+          formData.append('intern_email', form.elements['intern_email']?.value || '');
+
+          formData.append('github_url', form.elements['github_url']?.value || '');
+          formData.append('facebook_url', form.elements['facebook_url']?.value || '');
+          formData.append('linkedin_url', form.elements['linkedin_url']?.value || '');
+          formData.append('twitter_url', form.elements['twitter_url']?.value || '');
+          formData.append('instagram_url', form.elements['instagram_url']?.value || '');
+
+          // Files
+          if (profilePictureInput?.files?.[0]) {
+            formData.append('profile_picture', profilePictureInput.files[0]);
+          }
+          const cvFileInput = form.querySelector('input[name="cv_file"]');
+          if (cvFileInput?.files?.[0]) {
+            formData.append('cv_file', cvFileInput.files[0]);
+          }
+
+          // Internship section
+          formData.append('internship_description', form.elements['internship_description']?.value || '');
+          formData.append('internship_quote', form.elements['internship_quote']?.value || '');
+
+          // Skills arrays as JSON strings
+          const languages = collectChecked('languages[]');
+          const frameworks = collectChecked('frameworks[]');
+          const tools = collectChecked('tools[]');
+          formData.append('languages', JSON.stringify(languages));
+          formData.append('frameworks', JSON.stringify(frameworks));
+          formData.append('tools', JSON.stringify(tools));
+
+          // Experience
+          formData.append('job_title', form.elements['job_title']?.value || '');
+          formData.append('company_name', form.elements['company_name']?.value || '');
+          formData.append('job_duration', form.elements['job_duration']?.value || '');
+          formData.append('job_description', form.elements['job_description']?.value || '');
+
+          // Education
+          formData.append('degree', form.elements['degree']?.value || '');
+          formData.append('education_details', form.elements['education_details']?.value || '');
+
+          // 1) Submit profile to backend to write to DB
+          const profileRes = await fetch(API.profile, { method: 'POST', body: formData });
+          if (!profileRes.ok) {
+            const msg = await profileRes.text();
+            throw new Error(`Profile submit failed: ${msg || profileRes.status}`);
+          }
+          const profileJson = await profileRes.json().catch(() => ({}));
+          const internProfileId = profileJson.id;
+
+          // 2) Submit projects to backend to write into JSON file
+          // Convert any project images to data URLs as a fallback if backend doesn't persist files
+          const projectsPayload = await Promise.all(projectsData.map(async p => ({
+            project_title: p.title,
+            project_description: p.description,
+            tech_stack: Array.isArray(p.techStack) ? p.techStack : [],
+            project_duration: p.duration || '',
+            project_role: p.role || '',
+            demo_url: p.demoUrl || '',
+            source_url: p.sourceUrl || '',
+            // Prefer backend to save file and return URL; we provide data URL fallback
+            project_image_data_url: await readFileAsDataURL(p.image || null)
+          })));
+
+          if (internProfileId) {
+            const projRes = await fetch(API.projects, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ intern_profile_id: internProfileId, projects: projectsPayload })
+            });
+            if (!projRes.ok) {
+              const msg = await projRes.text();
+              throw new Error(`Projects submit failed: ${msg || projRes.status}`);
+            }
+          }
+
+          setStatus('success', 'Profile submitted successfully!');
+
+          // Redirect to portfolio page to view the uploaded data
+          if (internProfileId) {
+            const origin = window.location.origin;
+            const portfolioUrl = `portfolio.html?id=${encodeURIComponent(internProfileId)}`;
+            window.location.assign(portfolioUrl);
+            return;
+          }
+
+          // Reset UI (fallback if no redirect)
+          form.reset();
+          projectsData.length = 0; // clear in-memory projects
+          projectsContainer.innerHTML = '';
+          projectsList.classList.add('hidden');
+          if (profilePreview) {
+            profilePreview.src = 'profile.png';
+          }
+        } catch (err) {
+          console.error(err);
+          setStatus('error', err.message || 'Submission failed. Please try again.');
+        } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+      
+      
+      // Add smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('#mobileMenuBtn');
+      const mobileSidebar = document.querySelector('#mobileSidebar');
+      const mobileSidebarOverlay = document.querySelector('#mobileSidebarOverlay');
+      const closeMobileMenu = document.querySelector('#closeMobileMenu');
+      
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileSidebar.classList.remove('-translate-x-full');
+          mobileSidebarOverlay.classList.remove('hidden');
+        });
+      }
+      
+      if (closeMobileMenu) {
+        closeMobileMenu.addEventListener('click', function() {
+          mobileSidebar.classList.add('-translate-x-full');
+          mobileSidebarOverlay.classList.add('hidden');
+        });
+      }
+      
+      if (mobileSidebarOverlay) {
+        mobileSidebarOverlay.addEventListener('click', function() {
+          mobileSidebar.classList.add('-translate-x-full');
+          mobileSidebarOverlay.classList.add('hidden');
+        });
+      }
+
+      // Skill checkbox interactions
+      const skillCheckboxes = document.querySelectorAll('input[name="languages[]"], input[name="frameworks[]"], input[name="tools[]"]');
+      
+      skillCheckboxes.forEach(checkbox => {
+        const label = checkbox.closest('label');
+        
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            label.classList.add('bg-orange-200', 'border-orange-400');
+            label.classList.remove('bg-white/50');
+          } else {
+            label.classList.remove('bg-orange-200', 'border-orange-400');
+            label.classList.add('bg-white/50');
+          }
+        });
+        
+        // Add hover effect for better UX
+        label.addEventListener('mouseenter', function() {
+          if (!checkbox.checked) {
+            this.classList.add('bg-orange-50');
+          }
+        });
+        
+        label.addEventListener('mouseleave', function() {
+          if (!checkbox.checked) {
+            this.classList.remove('bg-orange-50');
+          }
+        });
+      });
+
+      // Project Modal Functionality
+      const uploadProjectsCard = document.getElementById('uploadProjectsCard');
+      const projectModal = document.getElementById('projectModal');
+      const closeProjectModal = document.getElementById('closeProjectModal');
+      const cancelProject = document.getElementById('cancelProject');
+      const projectForm = document.getElementById('projectForm');
+      const addTechStack = document.getElementById('addTechStack');
+      const techStackContainer = document.getElementById('techStackContainer');
+      const projectsList = document.getElementById('projectsList');
+      const projectsContainer = document.getElementById('projectsContainer');
+      const projectImageInput = document.getElementById('projectImageInput');
+
+      let projectCounter = 0;
+
+      // Open modal
+      uploadProjectsCard.addEventListener('click', function() {
+        projectModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+
+      // Close modal functions
+      function closeModal() {
+        projectModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        projectForm.reset();
+        // Clear tech stack inputs except the first one
+        const techInputs = techStackContainer.querySelectorAll('input[name="tech_stack[]"]');
+        techInputs.forEach((input, index) => {
+          if (index > 0) input.remove();
+        });
+      }
+
+      closeProjectModal.addEventListener('click', closeModal);
+      cancelProject.addEventListener('click', closeModal);
+
+      // Close modal when clicking outside
+      projectModal.addEventListener('click', function(e) {
+        if (e.target === projectModal) {
+          closeModal();
+        }
+      });
+
+      // Add tech stack input
+      addTechStack.addEventListener('click', function() {
+        const newInput = document.createElement('input');
+        newInput.type = 'text';
+        newInput.name = 'tech_stack[]';
+        newInput.placeholder = 'Add technology';
+        newInput.className = 'flex-1 px-3 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500';
+        techStackContainer.appendChild(newInput);
+      });
+
+      // Handle project form submission
+      projectForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fd = new FormData(projectForm);
+        const projectData = {
+          id: ++projectCounter,
+          title: fd.get('project_title') || '',
+          description: fd.get('project_description') || '',
+          duration: fd.get('project_duration') || '',
+          role: fd.get('project_role') || '',
+          demoUrl: fd.get('demo_url') || '',
+          sourceUrl: fd.get('source_url') || '',
+          techStack: fd.getAll('tech_stack[]').filter(tech => (tech || '').trim() !== ''),
+          image: projectImageInput.files[0] || null
+        };
+
+        // Persist in memory so we can submit to JSON endpoint on main submit
+        projectsData.push(projectData);
+
+        // Create project card
+        createProjectCard(projectData);
+        
+        // Show projects list
+        projectsList.classList.remove('hidden');
+        
+        // Close modal
+        closeModal();
+      });
+
+      // Create project card function
+      function createProjectCard(projectData) {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'group relative bg-white/80 backdrop-blur-md rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300 project-card';
+        projectCard.dataset.projectId = projectData.id;
+        
+        const imageUrl = projectData.image ? URL.createObjectURL(projectData.image) : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+        
+        projectCard.innerHTML = `
+          <div class="relative h-48 overflow-hidden">
+            <img src="${imageUrl}" alt="${projectData.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute top-3 left-3">
+              <span class="inline-block w-3 h-3 rounded-full bg-orange-500 animate-pulse"></span>
+            </div>
+            <button class="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs transition-colors" onclick="deleteProject(${projectData.id})">
+              ×
+            </button>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-orange-800 mb-2">${projectData.title}</h3>
+            <p class="text-gray-600 text-sm mb-4">${projectData.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${projectData.techStack.map(tech => `<span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">${tech}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-500 space-y-1">
+              ${projectData.duration ? `<p><strong>Duration:</strong> ${projectData.duration}</p>` : ''}
+              ${projectData.role ? `<p><strong>Role:</strong> ${projectData.role}</p>` : ''}
+            </div>
+            <div class="mt-4 flex gap-2">
+              ${projectData.demoUrl ? `<a href="${projectData.demoUrl}" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-xs font-medium transition-colors">Demo</a>` : ''}
+              ${projectData.sourceUrl ? `<a href="${projectData.sourceUrl}" target="_blank" class="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-3 py-1 rounded text-xs font-medium transition-colors">Source</a>` : ''}
+            </div>
+          </div>
+        `;
+        
+        projectsContainer.appendChild(projectCard);
+      }
+
+      // Delete project function (global scope)
+      window.deleteProject = function(projectId) {
+        const projectCard = document.querySelector(`[data-project-id="${projectId}"]`);
+        if (projectCard) {
+          projectCard.remove();
+          
+          // Hide projects list if no projects left
+          if (projectsContainer.children.length === 0) {
+            projectsList.classList.add('hidden');
+          }
+        }
+      };
+    });
+  </script>
+</body>
+</html>
+

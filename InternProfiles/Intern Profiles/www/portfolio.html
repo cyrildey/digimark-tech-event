@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intern Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/cookiesManagement.js"></script>
+  <script src="assets/js/apiConfig.js"></script>
+  <script src="assets/js/checkAuth.js"></script>
+</head>
+<body class="bg-orange-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+  <main class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-orange-800 mb-6">Intern Portfolio</h1>
+    <div id="status" class="hidden mb-4 px-4 py-3 rounded text-sm"></div>
+
+    <section id="hero" class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <div class="flex gap-6">
+        <img id="profile_picture" src="profile.png" alt="Profile" class="w-40 h-40 object-cover rounded-xl border" />
+        <div>
+          <h2 id="intern_name" class="text-2xl font-bold text-orange-700">Loading...</h2>
+          <p id="intern_position" class="text-gray-700"></p>
+          <p id="intern_school" class="text-gray-600"></p>
+          <p id="intern_bio" class="mt-2 text-gray-800"></p>
+          <div class="mt-2 text-sm text-gray-600" id="socials"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">About the Internship</h3>
+      <p id="internship_description" class="text-gray-800"></p>
+      <blockquote id="internship_quote" class="mt-2 italic text-gray-600"></blockquote>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">Skills</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <h4 class="font-semibold text-gray-700">Languages</h4>
+          <div id="languages" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-700">Frameworks</h4>
+          <div id="frameworks" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-700">Tools</h4>
+          <div id="tools" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">Experience & Education</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-gray-700">Experience</h4>
+          <p class="text-gray-800"><span id="job_title"></span> <span class="text-gray-600">@ <span id="company_name"></span></span></p>
+          <p class="text-sm text-gray-600" id="job_duration"></p>
+          <p class="mt-2 text-gray-800" id="job_description"></p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-700">Education</h4>
+          <p class="text-gray-800" id="degree"></p>
+          <p class="text-sm text-gray-600" id="education_details"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">Projects</h3>
+      <div id="projects" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE = window.API_BASE || '';
+    function qs(name) { return new URLSearchParams(window.location.search).get(name); }
+    function tagBadge(text) {
+      const span = document.createElement('span');
+      span.className = 'bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium';
+      span.textContent = text; return span;
+    }
+    function setStatus(type, msg) {
+      const el = document.getElementById('status');
+      el.className = 'mb-4 px-4 py-3 rounded text-sm ' + (type==='error' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800');
+      el.textContent = msg; el.classList.remove('hidden');
+    }
+    async function loadPortfolio() {
+      const id = qs('id');
+      if (!id) { setStatus('error','Missing profile id'); return; }
+      try {
+        const res = await fetch(`${API_BASE}/api/intern-portfolios/${id}`);
+        if (!res.ok) throw new Error('Failed to load portfolio');
+        const { profile, projects } = await res.json();
+        // Hero
+        document.getElementById('intern_name').textContent = profile.intern_name || '';
+        document.getElementById('intern_position').textContent = profile.intern_position || '';
+        document.getElementById('intern_school').textContent = profile.intern_school || '';
+        document.getElementById('intern_bio').textContent = profile.intern_bio || '';
+        if (profile.profile_picture_url) document.getElementById('profile_picture').src = profile.profile_picture_url;
+        // Socials
+        const socials = document.getElementById('socials');
+        const s = ['github_url','facebook_url','linkedin_url','twitter_url','instagram_url','intern_email'];
+        s.forEach(k=>{ if (profile[k]) { const a = document.createElement('a'); a.href = (k==='intern_email' ? 'mailto:'+profile[k] : profile[k]); a.target='_blank'; a.className='text-orange-600 underline mr-2'; a.textContent = k.replace('_url',''); socials.appendChild(a); } });
+        // About
+        document.getElementById('internship_description').textContent = profile.internship_description || '';
+        document.getElementById('internship_quote').textContent = profile.internship_quote || '';
+        // Skills
+        const skills = ['languages','frameworks','tools'];
+        skills.forEach(k=>{ try { const arr = Array.isArray(profile[k]) ? profile[k] : JSON.parse(profile[k]||'[]'); const el = document.getElementById(k); el.innerHTML=''; arr.forEach(v=> el.appendChild(tagBadge(v))); } catch {} });
+        // Experience & Education
+        ['job_title','company_name','job_duration','job_description','degree','education_details'].forEach(k=>{ const el = document.getElementById(k); if (el) el.textContent = profile[k] || ''; });
+        // Projects
+        const projectsWrap = document.getElementById('projects'); projectsWrap.innerHTML='';
+        projects.forEach(p=>{
+          const card = document.createElement('div');
+          card.className = 'bg-white/80 rounded-xl shadow overflow-hidden';
+          card.innerHTML = `
+            <div class="h-40 overflow-hidden">${p.project_image_url ? `<img src="${p.project_image_url}" class="w-full h-full object-cover" />` : ''}</div>
+            <div class="p-4">
+              <h4 class="font-semibold text-orange-800">${p.project_title||''}</h4>
+              <p class="text-sm text-gray-700 mt-1">${p.project_description||''}</p>
+              <div class="flex flex-wrap gap-1 mt-2">${(p.tech_stack||[]).map(t=>`<span class='bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs'>${t}</span>`).join('')}</div>
+              <div class="text-xs text-gray-500 mt-2">${p.project_duration?`<span>Duration: ${p.project_duration}</span>`:''} ${p.project_role?`<span class='ml-2'>Role: ${p.project_role}</span>`:''}</div>
+              <div class="mt-2 flex gap-2">
+                ${p.demo_url?`<a class='text-orange-600 underline text-xs' href='${p.demo_url}' target='_blank'>Demo</a>`:''}
+                ${p.source_url?`<a class='text-orange-600 underline text-xs' href='${p.source_url}' target='_blank'>Source</a>`:''}
+              </div>
+            </div>`;
+          projectsWrap.appendChild(card);
+        });
+        setStatus('success','Portfolio loaded');
+      } catch (e) {
+        console.error(e); setStatus('error','Failed to load portfolio');
+      }
+    }
+    loadPortfolio();
+  </script>
+</body>
+</html>
+

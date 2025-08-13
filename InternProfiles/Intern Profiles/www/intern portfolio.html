@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Favicon -->
+  <!-- <link rel="icon" type="image/jpg" href="logo.jpg" /> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digimark Intern Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    .sidebar-collapsed { width: 4rem; }
+    .sidebar-expanded { width: 18rem; }
+    .transition-width { transition: width 0.3s; }
+    .webgl-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+    .reduced-motion * { transition: none !important; animation: none !important; }
+    
+    /* Custom color overrides */
+    .bg-orange-50 { background-color: #fff7ed; }
+    .bg-orange-100 { background-color: #ffedd5; }
+    .bg-orange-200 { background-color: #fed7aa; }
+    .bg-orange-300 { background-color: #fdba74; }
+    .bg-orange-400 { background-color: #fb923c; }
+    .bg-orange-500 { background-color: #f97316; }
+    .bg-orange-600 { background-color: #ea580c; }
+    .bg-orange-700 { background-color: #c2410c; }
+    .bg-orange-800 { background-color: #9a3412; }
+    .bg-orange-900 { background-color: #7c2d12; }
+    
+    .text-orange-50 { color: #fff7ed; }
+    .text-orange-100 { color: #ffedd5; }
+    .text-orange-200 { color: #fed7aa; }
+    .text-orange-300 { color: #fdba74; }
+    .text-orange-400 { color: #fb923c; }
+    .text-orange-500 { color: #f97316; }
+    .text-orange-600 { color: #ea580c; }
+    .text-orange-700 { color: #c2410c; }
+    .text-orange-800 { color: #9a3412; }
+    .text-orange-900 { color: #7c2d12; }
+    
+    .border-orange-500 { border-color: #f97316; }
+    .border-orange-600 { border-color: #ea580c; }
+    
+    .hover\:bg-orange-100:hover { background-color: #ffedd5; }
+    .hover\:bg-orange-600:hover { background-color: #ea580c; }
+    
+    .bg-red-600 { background-color: #dc2626; }
+    .bg-red-700 { background-color: #b91c1c; }
+    .bg-red-800 { background-color: #991b1b; }
+    .bg-red-900 { background-color: #7f1d1d; }
+    
+    .text-red-600 { color: #dc2626; }
+    .text-red-700 { color: #b91c1c; }
+    .text-red-800 { color: #991b1b; }
+    .text-red-900 { color: #7f1d1d; }
+  </style>
+</head>
+
+<body class="bg-orange-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex">
+  <!-- Responsive Navigation Bar -->
+  <header>
+    <nav class="bg-orange-100/80 backdrop-blur-md border-b border-orange-200 fixed w-full z-30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center gap-4">
+            <img src="dims1.jpg" alt="Logo" class="w-10 h-10 rounded-full bg-white border-2 border-orange-600 shadow mr-2" />
+            <span class="font-bold text-lg text-orange-600">Digimark Allumni</span>
+          </div>
+          <div class="hidden md:flex flex-1 justify-center gap-2">
+            <a href="#hero" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              About me
+            </a>
+            <a href="#about" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17a2.25 2.25 0 01-2.25-2.25V9.25A2.25 2.25 0 019.75 7h4.5A2.25 2.25 0 0116.5 9.25v5.5A2.25 2.25 0 0114.25 17h-4.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 7V5.75A2.25 2.25 0 0111.25 3.5h1.5A2.25 2.25 0 0115 5.75V7"/></svg>
+              Internship
+            </a>
+            <a href="#projects" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m-6 4h6a2 2 0 002-2v-6a2 2 0 00-2-2h-6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+              Projects
+            </a>
+            <a href="#experience" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-9-5m9 5l9-5"/></svg>
+              Experience
+            </a>
+            <a href="#contact" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-orange-200 font-medium text-orange-800">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12l-4-4-4 4m8 0v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V6a2 2 0 00-2-2H6a2 2 0 00-2 2v6"/></svg>
+              Contact
+            </a>
+          </div>
+        
+        </div>
+      </div>
+      <!-- Mobile Sidebar -->
+      <div id="mobileSidebar" class="fixed top-0 left-0 h-full w-64 bg-orange-100/80 backdrop-blur-md shadow-lg z-40 transform -translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+        <div class="flex items-center justify-between p-4 border-b border-orange-200">
+          <span class="font-bold text-lg text-orange-600">Chestly</span>
+          <button id="closeMobileMenu" class="p-2 rounded hover:bg-orange-200" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+        <input id="mobileSearchBar" type="text" placeholder="Search..." class="m-4 px-3 py-2 rounded bg-orange-200 focus:outline-none" />
+        <nav class="flex-1 overflow-y-auto">
+          <a href="#hero" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Hero</a>
+          <a href="#about" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">About</a>
+          <a href="#projects" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Projects</a>
+          <a href="#experience" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Experience</a>
+          <a href="#contact" class="block px-6 py-3 hover:bg-orange-200 font-medium text-orange-800">Contact</a>
+        </nav>
+      </div>
+      <div id="mobileSidebarOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-30 hidden md:hidden"></div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 pt-16 transition-all duration-300 bg-orange-50 space-y-0" id="mainContent">
+    <!-- WebGL/Canvas Background -->
+    <canvas id="webglBg" class="webgl-bg"></canvas>
+        <!-- Hero Section (Landing Page) -->
+    <section class="about h-screen flex flex-col justify-center items-center py-20" id="hero">
+    <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8 items-center hover:scale-105 transition-transform w-full max-w-4xl mx-auto">
+          <!-- Intern Photo in Square Frame -->
+          <div class="flex-shrink-0 relative flex items-center justify-center" style="min-width:320px; min-height:320px;">
+            <div class="bg-orange-100 dark:bg-orange-900 border-4 border-orange-500 rounded-xl shadow-lg flex items-center justify-center w-72 h-72">
+              <img src="profile.jpeg" alt="Intern Photo" class="object-cover w-64 h-64 rounded-xl border-2 border-white shadow" />
+            </div>
+          </div>
+          <!-- Intern Info -->
+          <div class="flex-1 flex flex-col gap-4">
+            <h2 class="text-3xl font-bold text-orange-700">John Doe</h2>
+            <p class="text-lg text-gray-900 font-semibold">Software Engineering Intern</p>
+            <p class="text-base text-gray-800 font-medium">Yaounde International Business School, Cameroon</p>
+            <p class="text-base text-gray-800 font-medium">Passionate about building scalable web applications and learning new technologies.</p>
+            <!-- Social Media Buttons -->
+            <div class="flex gap-3 mt-2">
+              <a href="https://github.com/username" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-gray-800 dark:text-gray-100 p-2 rounded-full shadow transition" title="GitHub">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.45.11-3.02 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.57.23 2.73.12 3.02.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.7.42.36.8 1.09.8 2.2v3.26c0 .31.21.67.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
+              </a>
+              <a href="https://facebook.com/username" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-blue-700 dark:text-blue-300 p-2 rounded-full shadow transition" title="Facebook">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.92.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.674V1.326C24 .6 23.4 0 22.675 0"/></svg>
+              </a>
+              <a href="https://linkedin.com/in/username" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-blue-600 dark:text-blue-400 p-2 rounded-full shadow transition" title="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-10h3v10zm-1.5-11.25c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.25 11.25h-3v-5.5c0-1.32-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.91v5.59h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/></svg>
+              </a>
+              <a href="https://x.com/username" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-black dark:text-white p-2 rounded-full shadow transition" title="X">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.53 7.477l-4.273 4.273 4.273 4.273-1.06 1.06-4.273-4.273-4.273 4.273-1.06-1.06 4.273-4.273-4.273-4.273 1.06-1.06 4.273 4.273 4.273-4.273z"/></svg>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-pink-600 dark:text-pink-400 p-2 rounded-full shadow transition" title="Instagram">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.131 4.602.425 3.635 1.392 2.668 2.359 2.374 3.532 2.315 4.809.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.059 1.277.353 2.45 1.32 3.417.967.967 2.14 1.261 3.417 1.32C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.277-.059 2.45-.353 3.417-1.32.967-.967 1.261-2.14 1.32-3.417.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.277-.353-2.45-1.32-3.417-.967-.967-2.14-1.261-3.417-1.32C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+              </a>
+              <a href="mailto:john.doe@example.com" class="bg-gray-100 dark:bg-gray-700 hover:bg-orange-100 dark:hover:bg-orange-800 text-red-600 dark:text-red-400 p-2 rounded-full shadow transition" title="Email">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/></svg>
+              </a>
+            </div>
+            <!-- Download CV Button -->
+            <div class="mt-4">
+              <a href="cv.pdf" download class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-lg shadow transition">Download CV</a>
+            </div>
+          </div>
+        </div>
+    </section>
+
+   
+   
+    <!-- About Internship -->
+    <section id="about" class="h-screen flex flex-col justify-center items-center py-20">
+      <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-5xl hover:scale-105 transition-transform">
+        <h2 class="text-4xl font-bold mb-6 text-orange-900 text-center">About The Internship</h2>
+        <div class="w-full flex flex-col md:flex-row gap-12 items-center">
+        <!-- Bio and Personal Touch -->
+        <div class="flex-1 flex flex-col gap-6">
+          <p class="text-lg text-gray-900 font-medium">
+            Our internship program at Digimark is a dynamic and hands-on experience designed to prepare young developers, designers, and analysts for the real world of technology and innovation. Each intern was integrated into real projects, collaborated in teams, and received mentorship throughout the process.
+          </p>
+          <p class="text-base text-gray-800 font-medium">
+            "At Digimark, I built full-stack web applications, collaborated on agile projects, and deepened my understanding of scalable systems. It was transformative!"
+          </p>
+        </div>
+        <!-- Skills Gained -->
+        <div class="flex-1 flex flex-col gap-4">
+          <h3 class="text-2xl font-semibold mb-2 text-orange-800 font-bold">Skills Gained</h3>
+                      <div class="mb-2">
+              <span class="font-semibold text-orange-800">Languages:</span>
+              <ul class="flex flex-wrap gap-3 mt-1 items-center">
+                <li title="HTML5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-8 h-8"></li>
+                <li title="CSS3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-8 h-8"></li>
+                <li title="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8"></li>
+                <li title="C"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" alt="C" class="w-8 h-8"></li>
+                <li title="Java"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original-wordmark.svg" alt="Java" class="w-8 h-8"></li>
+              </ul>
+            </div>
+            <div class="mb-2">
+              <span class="font-semibold text-orange-800">Frameworks:</span>
+              <ul class="flex flex-wrap gap-3 mt-1 items-center">
+                <li title="bootsrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="bootsrap" class="w-8 h-8"></li>
+                <li title="tailwindcss"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="tailwindcss" class="w-8 h-8 bg-white rounded"></li>
+                <li title="react"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" class="w-8 h-8"></li>
+              </ul>
+            </div>
+            <div class="mb-2">
+              <span class="font-semibold text-orange-800">Tools:</span>
+              <ul class="flex flex-wrap gap-3 mt-1 items-center">
+
+                <li title="MySQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8"></li>
+                <li title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-8 h-8"></li>
+                <li title="GitHub"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-8 h-8 bg-white rounded"></li>
+                <li title="androidStudio"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" alt="androidStudio" class="w-8 h-8"></li>
+                <li title="vscode"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="vscode" class="w-8 h-8"></li>
+                <li title="photoshop"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg" alt="photoshop" class="w-8 h-8"></li>
+              </ul>
+            </div>
+          
+          <div>
+            <span class="font-semibold text-orange-800">Soft Skills:</span>
+            <ul class="flex flex-wrap gap-2 mt-1">
+              <li class="bg-orange-200 text-orange-800 px-3 py-1 rounded font-medium">Teamwork</li>
+              <li class="bg-orange-200 text-orange-800 px-3 py-1 rounded font-medium">Problem-solving</li>
+              <li class="bg-orange-200 text-orange-800 px-3 py-1 rounded font-medium">Agile</li>
+              <li class="bg-orange-200 text-orange-800 px-3 py-1 rounded font-medium">Communication</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- Projects Section -->
+    <section id="projects" class="h-screen flex flex-col justify-center items-center py-20">
+      <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-6xl hover:scale-105 transition-transform">
+        <h2 class="text-4xl font-bold mb-8 text-orange-900 text-center">Projects</h2>
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project Card 1 -->
+        <div class="group relative bg-white/80 backdrop-blur-md rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300">
+          <!-- Project Image -->
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Landing Page Project" 
+                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <!-- Status Indicator -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-block w-3 h-3 rounded-full bg-orange-500 animate-pulse"></span>
+            </div>
+          </div>
+          
+          <!-- Project Info -->
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-orange-800 mb-2">Landing Page</h3>
+            <p class="text-gray-600 text-sm mb-4">Modern responsive landing page with interactive elements and smooth animations.</p>
+            
+            <!-- Tech Stack -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">HTML5</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">CSS3</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">JavaScript</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">Tailwind</span>
+            </div>
+          </div>
+          
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-orange-600/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-center text-white p-6">
+              <h4 class="text-2xl font-bold mb-4">Landing Page Project</h4>
+              <p class="text-sm mb-4 leading-relaxed">
+                A fully responsive landing page built with modern web technologies. 
+                Features include smooth animations, interactive elements, and mobile-first design.
+              </p>
+              <div class="space-y-2 text-sm">
+                <p><strong>Duration:</strong> 2 weeks</p>
+                <p><strong>Role:</strong> Full-stack Developer</p>
+                <p><strong>Tools:</strong> VS Code, Git, GitHub</p>
+              </div>
+              <div class="mt-6 flex gap-3 justify-center">
+                <a href="#" class="bg-white text-orange-600 px-4 py-2 rounded-lg font-medium hover:bg-orange-50 transition-colors">View Demo</a>
+                <a href="#" class="border border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-orange-600 transition-colors">Source Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <!-- Project Card 2 -->
+        <div class="group relative bg-white/80 backdrop-blur-md rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300">
+          <!-- Project Image -->
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Courier Management System" 
+                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <!-- Status Indicator -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-block w-3 h-3 rounded-full bg-orange-600 animate-pulse"></span>
+            </div>
+          </div>
+          
+          <!-- Project Info -->
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-orange-800 mb-2">Courier Management System</h3>
+            <p class="text-gray-600 text-sm mb-4">Comprehensive system for managing courier services, tracking, and delivery operations.</p>
+            
+            <!-- Tech Stack -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">React</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">Node.js</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">MySQL</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">Express</span>
+            </div>
+          </div>
+          
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-orange-600/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-center text-white p-6">
+              <h4 class="text-2xl font-bold mb-4">Courier Management System</h4>
+              <p class="text-sm mb-4 leading-relaxed">
+                A full-stack web application for managing courier services. Includes user authentication, 
+                package tracking, delivery scheduling, and real-time notifications.
+              </p>
+              <div class="space-y-2 text-sm">
+                <p><strong>Duration:</strong> 6 weeks</p>
+                <p><strong>Role:</strong> Backend Developer</p>
+                <p><strong>Tools:</strong> VS Code, Git, Postman</p>
+              </div>
+              <div class="mt-6 flex gap-3 justify-center">
+                <a href="#" class="bg-white text-orange-600 px-4 py-2 rounded-lg font-medium hover:bg-orange-50 transition-colors">View Demo</a>
+                <a href="#" class="border border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-orange-600 transition-colors">Source Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="group relative bg-white/80 backdrop-blur-md rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300">
+          <!-- Project Image -->
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Open Cart E-commerce" 
+                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <!-- Status Indicator -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-block w-3 h-3 rounded-full bg-red-600 animate-pulse"></span>
+            </div>
+          </div>
+          
+          <!-- Project Info -->
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-orange-800 mb-2">Open Cart E-commerce</h3>
+            <p class="text-gray-600 text-sm mb-4">E-commerce platform with shopping cart, payment integration, and admin dashboard.</p>
+            
+            <!-- Tech Stack -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">PHP</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">MySQL</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">Bootstrap</span>
+              <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">jQuery</span>
+            </div>
+          </div>
+          
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-orange-600/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-center text-white p-6">
+              <h4 class="text-2xl font-bold mb-4">Open Cart E-commerce</h4>
+              <p class="text-sm mb-4 leading-relaxed">
+                A complete e-commerce solution with product catalog, shopping cart functionality, 
+                secure payment processing, and comprehensive admin panel for inventory management.
+              </p>
+              <div class="space-y-2 text-sm">
+                <p><strong>Duration:</strong> 8 weeks</p>
+                <p><strong>Role:</strong> Full-stack Developer</p>
+                <p><strong>Tools:</strong> XAMPP, Git, VS Code</p>
+              </div>
+              <div class="mt-6 flex gap-3 justify-center">
+                <a href="#" class="bg-white text-orange-600 px-4 py-2 rounded-lg font-medium hover:bg-orange-50 transition-colors">View Demo</a>
+                <a href="#" class="border border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-orange-600 transition-colors">Source Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+     
+  
+
+     <!-- Professional Experience & Education Section -->
+    <section id="experience" class="h-screen flex flex-col justify-center items-center py-20">
+      <div class="bg-orange-100/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-5xl hover:scale-105 transition-transform">
+        <h2 class="text-4xl font-bold mb-8 text-orange-900 text-center">Professional Experience &amp; Education</h2>
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+        <!-- Experience -->
+        <div>
+          <h3 class="text-2xl font-semibold mb-4 text-orange-800 font-bold">Experience</h3>
+          <ul class="space-y-6">
+            <li>
+              <div class="flex items-start gap-4">
+                <img src="digimark.jpg" alt="Company Logo" class="w-12 h-12 rounded shadow">
+                <div>
+                  <span class="font-bold text-lg text-orange-800">Software Engineering Intern</span> <span class="text-gray-700 font-medium">@ Digimark Consulting</span>
+                  <div class="text-sm text-gray-800 font-medium">June 2025 – Present</div>
+                  <div class="text-base text-orange-800 font-medium">Works on building tech solutions for clients with various problems.</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Education -->
+        <div>
+          <h3 class="text-2xl font-semibold mb-4 text-red-800 font-bold">Education</h3>
+          <ul class="space-y-6">
+            <li>
+              <div class="flex items-start gap-4">
+                <img src="iusty.jpg" alt="University Logo" class="w-12 h-12 rounded shadow" loading="lazy" width="48" height="48">
+                <div>
+                  <span class="font-bold text-lg text-orange-800">HND. in Software Engineering</span>
+                  <div class="text-sm text-gray-800 font-medium">Yaounde International Business School, 2023 – 2025</div>
+                </div>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- Footer with Contact Features & Social Links -->
+  <footer id="contact" class="w-full py-20">
+    <div class="bg-orange-100/80 backdrop-blur-md border-t border-orange-200 shadow-xl p-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Company Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <img src="dims1.jpg" alt="Logo" class="w-10 h-10 rounded-full bg-white border-2 border-orange-600 shadow" />
+            <span class="font-bold text-lg text-orange-600">Digimark Consulting</span>
+          </div>
+          <p class="text-orange-800 text-sm leading-relaxed">
+            Explore cutting-edge IT solutions designed to elevate your business and drive success in a digital world.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/digimark.cm" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.92.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.674V1.326C24 .6 23.4 0 22.675 0"/>
+              </svg>
+            </a>
+            <a href="https://x.com/i/flow/login?redirect_after_login=%2FDConsultin54749" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/digimark_consulting01/?igsh=MXRtMngwMm9rdTZsNQ%3D%3D#" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.131 4.602.425 3.635 1.392 2.668 2.359 2.374 3.532 2.315 4.809.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.059 1.277.353 2.45 1.32 3.417.967.967 2.14 1.261 3.417 1.32C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.277-.059 2.45-.353 3.417-1.32.967-.967 1.261-2.14 1.32-3.417.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.277-.353-2.45-1.32-3.417-.967-.967-2.14-1.261-3.417-1.32C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
+              <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-10h3v10zm-1.5-11.25c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.25 11.25h-3v-5.5c0-1.32-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.91v5.59h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Our Company -->
+        <div class="space-y-4">
+          <h3 class="text-orange-600 font-bold text-lg">Our Company</h3>
+          <ul class="space-y-2">
+            <li><a href="https://www.digimarkconsulting.cm/about" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              About us
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/services" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Our Services
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/projects" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Our Projects
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/projects" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Latest Blog
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/contact" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Contact us
+            </a></li>
+          </ul>
+        </div>
+
+        <!-- Our Services -->
+        <div class="space-y-4">
+          <h3 class="text-orange-600 font-bold text-lg">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="https://www.digimarkconsulting.cm/user/details/training.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Professional IT Training
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/software_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Software Development
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/data_sciences.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Data Sciences
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/digital_marketing_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Digital Marketing
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/graphics_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              UI/UX Design
+            </a></li>
+            <li><a href="https://www.digimarkconsulting.cm/user/details/network_and_security_details.html" class="flex items-center gap-2 text-orange-800 hover:text-orange-600 transition-colors font-medium">
+              <svg class="w-3 h-3 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+              </svg>
+              Network and Security
+            </a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us -->
+        <div class="space-y-4">
+          <h3 class="text-orange-600 font-bold text-lg">Contact Us</h3>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">Carrefour TKC, Yaounde, Cameroon</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">Carrefour L'amitie, Ekie, Yaounde, Cameroon</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">+237690550568</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/>
+              </svg>
+              <span class="text-orange-800 text-sm">training@digimarkconsulting.cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-orange-200 pt-6 text-center">
+        <p class="text-orange-700 text-sm">&copy; DigiMark Consulting Sarl 2025, All right reserved.</p>
+      </div>
+
+      <!-- Scroll to Top Button -->
+      <button id="scrollToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center opacity-0 pointer-events-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    // Canvas Background Setup
+    const canvas = document.getElementById('webglBg');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Set white background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      });
+    }
+
+    // Responsive Navbar & Mobile Sidebar
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    function openMobileSidebar() {
+      mobileSidebar.classList.remove('-translate-x-full');
+      mobileSidebarOverlay.classList.remove('hidden');
+    }
+    function closeMobileSidebar() {
+      mobileSidebar.classList.add('-translate-x-full');
+      mobileSidebarOverlay.classList.add('hidden');
+    }
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileSidebar);
+    if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMobileSidebar);
+    if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
+
+    
+    // Reduced motion toggle
+    const motionToggle = document.getElementById('motionToggle');
+    const motionIcon = document.getElementById('motionIcon');
+    let reducedMotion = false;
+    motionToggle.addEventListener('click', () => {
+      reducedMotion = !reducedMotion;
+      document.body.classList.toggle('reduced-motion', reducedMotion);
+      motionIcon.classList.toggle('opacity-50', reducedMotion);
+    });
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    if (scrollToTopBtn) {
+      // Show/hide button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+          scrollToTopBtn.classList.add('opacity-100');
+        } else {
+          scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+          scrollToTopBtn.classList.remove('opacity-100');
+        }
+      });
+
+      // Scroll to top when button is clicked
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  </script>
+</body>
+</html>

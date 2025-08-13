@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.header{
+    background-color: #105F64;
+}
+.footer{
+    border-top: 1.5px solid #62696C;
+    background-color: white;
+}
+.footer .row a{
+    text-decoration: none;
+}
+
+.footer .row a p{
+    color: #62696C;
+}
+.profileimg{
+    width: 50%;
+}
+.profileimg img{
+    border-radius: 1000px;
+    border: 5px solid #105F64;
+}
+.userinformation .username{
+    border-bottom: 1px solid #105F64;
+}
+.userinformation .username p{
+    color: #62696C;
+}
+
+/* Setings */
+.settings{
+    border-top: 2px solid #105F64;
+}

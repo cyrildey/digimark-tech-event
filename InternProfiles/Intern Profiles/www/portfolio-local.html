@@ -1,0 +1,176 @@
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intern Portfolio - Local</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/cookiesManagement.js"></script>
+  <script src="assets/js/apiConfig.js"></script>
+  <script src="assets/js/checkAuth-local.js"></script>
+</head>
+<body class="bg-orange-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+  <main class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-orange-800 mb-6">Intern Portfolio</h1>
+    <div id="status" class="hidden mb-4 px-4 py-3 rounded text-sm"></div>
+
+    <section id="hero" class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <div class="flex gap-6">
+        <img id="profile_picture" src="profile.png" alt="Profile" class="w-40 h-40 object-cover rounded-xl border" />
+        <div>
+          <h2 id="intern_name" class="text-2xl font-bold text-orange-700">Loading...</h2>
+          <p id="intern_position" class="text-gray-700"></p>
+          <p id="intern_school" class="text-gray-600"></p>
+          <p id="intern_bio" class="mt-2 text-gray-800"></p>
+          <div class="mt-2 text-sm text-gray-600" id="socials"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">About the Internship</h3>
+      <p id="internship_description" class="text-gray-800"></p>
+      <blockquote id="internship_quote" class="mt-2 italic text-gray-600"></blockquote>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">Skills</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <h4 class="font-semibold text-gray-700">Languages</h4>
+          <div id="languages" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-700">Frameworks</h4>
+          <div id="frameworks" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-700">Tools</h4>
+          <div id="tools" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6 mb-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">Projects</h3>
+      <div id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-gray-800/50 rounded-xl shadow p-6">
+      <h3 class="text-xl font-semibold text-orange-800 mb-2">Experience & Education</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="font-semibold text-gray-700">Experience</h4>
+          <div id="experience" class="mt-2"></div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-700">Education</h4>
+          <div id="education" class="mt-2"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Get intern ID from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const internId = urlParams.get('id');
+
+    if (!internId) {
+      document.getElementById('status').textContent = 'No intern ID provided';
+      document.getElementById('status').className = 'mb-4 px-4 py-3 rounded text-sm bg-red-100 text-red-800';
+      document.getElementById('status').classList.remove('hidden');
+    } else {
+      loadPortfolioData(internId);
+    }
+
+    async function loadPortfolioData(id) {
+      try {
+        const response = await fetch(`/api/intern-portfolios/${id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        populatePortfolio(data);
+      } catch (error) {
+        console.error('Error loading portfolio:', error);
+        document.getElementById('status').textContent = 'Error loading portfolio data';
+        document.getElementById('status').className = 'mb-4 px-4 py-3 rounded text-sm bg-red-100 text-red-800';
+        document.getElementById('status').classList.remove('hidden');
+      }
+    }
+
+    function populatePortfolio(data) {
+      // Basic info
+      document.getElementById('intern_name').textContent = data.intern_name || 'Unknown';
+      document.getElementById('intern_position').textContent = data.intern_position || '';
+      document.getElementById('intern_school').textContent = data.intern_school || '';
+      document.getElementById('intern_bio').textContent = data.intern_bio || '';
+      
+      // Profile picture
+      if (data.profile_picture_url) {
+        document.getElementById('profile_picture').src = data.profile_picture_url;
+      }
+      
+      // Social links
+      const socials = document.getElementById('socials');
+      const socialLinks = [];
+      if (data.github_url) socialLinks.push(`<a href="${data.github_url}" class="text-blue-600">GitHub</a>`);
+      if (data.linkedin_url) socialLinks.push(`<a href="${data.linkedin_url}" class="text-blue-600">LinkedIn</a>`);
+      if (data.facebook_url) socialLinks.push(`<a href="${data.facebook_url}" class="text-blue-600">Facebook</a>`);
+      if (data.twitter_url) socialLinks.push(`<a href="${data.twitter_url}" class="text-blue-600">Twitter</a>`);
+      if (data.instagram_url) socialLinks.push(`<a href="${data.instagram_url}" class="text-blue-600">Instagram</a>`);
+      socials.innerHTML = socialLinks.join(' | ');
+      
+      // Internship info
+      document.getElementById('internship_description').textContent = data.internship_description || '';
+      document.getElementById('internship_quote').textContent = data.internship_quote || '';
+      
+      // Skills
+      populateSkills('languages', data.languages);
+      populateSkills('frameworks', data.frameworks);
+      populateSkills('tools', data.tools);
+      
+      // Projects
+      populateProjects(data.projects || []);
+      
+      // Experience and Education
+      document.getElementById('experience').innerHTML = data.job_title ? 
+        `<p><strong>${data.job_title}</strong> at ${data.company_name}</p><p>${data.job_duration}</p><p>${data.job_description}</p>` : 
+        '<p>No experience listed</p>';
+      
+      document.getElementById('education').innerHTML = data.degree ? 
+        `<p><strong>${data.degree}</strong></p><p>${data.education_details}</p>` : 
+        '<p>No education details listed</p>';
+    }
+
+    function populateSkills(containerId, skills) {
+      const container = document.getElementById(containerId);
+      if (skills && skills.length > 0) {
+        container.innerHTML = skills.map(skill => 
+          `<span class="px-2 py-1 bg-orange-100 text-orange-800 rounded text-sm">${skill}</span>`
+        ).join('');
+      } else {
+        container.innerHTML = '<span class="text-gray-500">None listed</span>';
+      }
+    }
+
+    function populateProjects(projects) {
+      const container = document.getElementById('projects');
+      if (projects && projects.length > 0) {
+        container.innerHTML = projects.map(project => `
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h4 class="font-semibold text-gray-800">${project.title || 'Untitled Project'}</h4>
+            <p class="text-gray-600 text-sm mt-1">${project.description || 'No description'}</p>
+            ${project.image_url ? `<img src="${project.image_url}" alt="Project image" class="mt-2 w-full h-32 object-cover rounded">` : ''}
+            ${project.url ? `<a href="${project.url}" class="text-blue-600 text-sm mt-2 inline-block">View Project</a>` : ''}
+          </div>
+        `).join('');
+      } else {
+        container.innerHTML = '<p class="text-gray-500">No projects listed</p>';
+      }
+    }
+  </script>
+</body>
+</html>
+

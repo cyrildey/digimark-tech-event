@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Sign Up Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                DEFAULT: "#ff800",
+                light: "#ffb84d",
+                dark: "#ff6600"
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/cookiesManagement.js"></script>
+    <script src="assets/js/checkNotAuth.js"></script>
+    <script src="assets/js/defaultToken.js"></script>
+    <style>
+      .spinner {
+        border: 2px solid transparent;
+        border-top-color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        animation: spin 0.75s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+</head>
+<body class="min-h-full bg-gradient-to-b from-white via-[#ffe0b2] to-[#ffb84d] flex items-center justify-center p-6">
+  <div class="w-full max-w-sm sm:max-w-md bg-white/20 backdrop-blur-xl rounded-2xl shadow-lg ring-1 ring-gray-200 px-8 py-10 space-y-6">
+    <!-- Logo + Title -->
+    <div class="flex flex-col items-center space-y-2">
+      <img src="assets/images/dims-logo.svg" alt="Digimark Logo" class="h-16 w-16 select-none" />
+      <h1 class="text-center text-lg font-semibold tracking-tight text-gray-800">
+        Digimark Internship Management System
+      </h1>
+    </div>
+    <h2 class="text-center text-xl font-bold text-[#80002a] mt-2 mb-2">Register as an Intern</h2>
+    <form id="multi-step-form" onsubmit="return register(event)" class="space-y-4 mt-2">
+            <!-- Step 1: Personal Information -->
+            <div class="form-step form-step-1 active">
+                <h3 class="text-center mb-4 text-lg font-semibold text-gray-700">Step 1: Present yourself</h3>
+                <!-- Full Name -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-800">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <!-- Date Of Birth -->
+                <div>
+                    <label for="DOB" class="block text-sm font-medium text-gray-800">Date Of Birth *</label>
+                    <input type="date" id="DOB" name="DOB" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <div class="flex justify-center mt-4">
+                    <button type="button" class="w-full inline-flex justify-center items-center rounded-xl bg-gradient-to-br from-[#7a002b] to-[#b22234] hover:from-[#8a1538] hover:to-[#c72c41] focus:ring-4 focus:ring-[#7a002b]/40 text-white font-semibold py-2.5 transition-all" id="next-1">Next</button>
+                </div>
+            </div>
+        
+            <!-- Step 2: School Information -->
+            <div class="form-step form-step-2">
+                <h3 class="text-center mb-4 text-lg font-semibold text-gray-700">Step 2: Where do you school?</h3>
+                <!-- School Name -->
+                <div>
+                    <label for="schoolname" class="block text-sm font-medium text-gray-800">School name *</label>
+                    <input type="text" id="schoolname" name="schoolname" placeholder="Enter your school name" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <!-- Department -->
+                <div class="relative">
+                    <label for="department" class="block text-sm font-medium text-gray-800">Department / Specialty *</label>
+                    <input type="text" id="department" name="department" placeholder="Start typing your department..." autocomplete="off" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                    <ul id="department-list" class="absolute z-10 w-full bg-white border border-gray-200 rounded-xl shadow-lg mt-1 hidden max-h-40 overflow-y-auto"></ul>
+                </div>
+                <!-- Level -->
+                <div>
+                    <label for="level" class="block text-sm font-medium text-gray-800">Level *</label>
+                    <select id="level" name="level" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900">
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                        <option value="4">Level 4</option>
+                    </select>
+                </div>
+                <div class="flex justify-between mt-4 space-x-2">
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 transition-all" id="prev-2">Previous</button>
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gradient-to-br from-[#7a002b] to-[#b22234] hover:from-[#8a1538] hover:to-[#c72c41] focus:ring-4 focus:ring-[#7a002b]/40 text-white font-semibold py-2.5 transition-all" id="next-2">Next</button>
+                </div>
+            </div>
+        
+            <!-- Step 3: Location Information -->
+            <div class="form-step form-step-3">
+                <h3 class="text-center mb-4 text-lg font-semibold text-gray-700">Step 3: Where do you live?</h3>
+                <!-- Region -->
+                <div>
+                    <label for="region" class="block text-sm font-medium text-gray-800">Region: *</label>
+                    <select id="region" name="region" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900">
+                        <option value="">Select Region</option>
+                        <option value="adamawa">Adamawa</option>
+                        <option value="center">Center</option>
+                        <option value="east">East</option>
+                        <option value="far_north">Far North</option>
+                        <option value="littoral">Littoral</option>
+                        <option value="north">North</option>
+                        <option value="northwest">Northwest</option>
+                        <option value="south">South</option>
+                        <option value="southwest">Southwest</option>
+                        <option value="west">West</option>
+                    </select>
+                </div>
+                <!-- Town -->
+                <div class="mt-3">
+                    <label for="town" class="block text-sm font-medium text-gray-800">Town: *</label>
+                    <select id="town" name="town" required disabled class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900">
+                        <option value="">Select Town</option>
+                    </select>
+                </div>
+                <!-- Quarter -->
+                <div class="mt-3">
+                    <label for="quarter" class="block text-sm font-medium text-gray-800">Quarter: *</label>
+                    <input required type="text" id="quarter" name="quarter" placeholder="Enter your Quarter" class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <div class="flex justify-between mt-4 space-x-2">
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 transition-all" id="prev-3">Previous</button>
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gradient-to-br from-[#7a002b] to-[#b22234] hover:from-[#8a1538] hover:to-[#c72c41] focus:ring-4 focus:ring-[#7a002b]/40 text-white font-semibold py-2.5 transition-all" id="next-3">Next</button>
+                </div>
+            </div>
+        
+            <!-- Step 4: Contact Information -->
+            <div class="form-step form-step-4">
+                <h3 class="text-center mb-4 text-lg font-semibold text-gray-700">Step 4: Leave your contact</h3>
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-800">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <!-- Phone -->
+                <div class="mt-3">
+                    <label for="phone" class="block text-sm font-medium text-gray-800">Phone *</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <div class="flex justify-between mt-4 space-x-2">
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 transition-all" id="prev-4">Previous</button>
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gradient-to-br from-[#7a002b] to-[#b22234] hover:from-[#8a1538] hover:to-[#c72c41] focus:ring-4 focus:ring-[#7a002b]/40 text-white font-semibold py-2.5 transition-all" id="next-4">Next</button>
+                </div>
+            </div>
+        
+            <!-- Step 5: Password Information -->
+            <div class="form-step form-step-5">
+                <h3 class="text-center mb-4 text-lg font-semibold text-gray-700">Step 5: Create your Password</h3>
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-800">Password *</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <!-- Confirm Password -->
+                <div class="mt-3">
+                    <label for="confirm-password" class="block text-sm font-medium text-gray-800">Confirm Password *</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required class="mt-1 block w-full rounded-xl border-gray-300 focus:ring-brand focus:border-brand px-4 py-2.5 text-sm bg-white/80 text-gray-900 placeholder-gray-500" />
+                </div>
+                <div class="flex justify-between mt-4 space-x-2">
+                    <button type="button" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2.5 transition-all" id="prev-5">Previous</button>
+                    <button type="submit" class="w-1/2 inline-flex justify-center items-center rounded-xl bg-gradient-to-br from-[#7a002b] to-[#b22234] hover:from-[#8a1538] hover:to-[#c72c41] focus:ring-4 focus:ring-[#7a002b]/40 text-white font-semibold py-2.5 transition-all" id="submit-form">Submit</button>
+                </div>
+            </div>
+        </form>
+
+
+
+        <div class="flex items-center space-x-2 mt-4">
+          <span class="flex-grow h-px bg-gray-300"></span>
+          <span class="text-xs uppercase text-gray-500">or</span>
+          <span class="flex-grow h-px bg-gray-300"></span>
+        </div>
+        <p class="text-center text-sm text-gray-700 mt-2">
+          Already have an account?
+          <a href="login.html" class="font-medium text-brand hover:underline">Login</a>
+        </p>
+      </form>
+    </div>
+    <script>
+        //if target exist keep in cookies
+        if(window.location.search.substring(1) != '') setCookie('after_registration',window.location.search.substring(1))
+
+        // Email validation function
+        function isValidEmail(email) {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(email);
+        }
+
+        // Function to validate the current step
+        function validateStep(step) {
+            // Variables to store step elements
+            const steps = document.querySelectorAll('.form-step');
+            const currentStepForm = steps[step-1];
+            const requiredFields = currentStepForm.querySelectorAll('[required]');
+            let valid = true;
+            // Step 1 Validation: Personal Information
+            if (step === 1) {
+                const name = document.getElementById('name').value;
+                const dob = document.getElementById('DOB').value;
+                if (!name || !dob) {
+                    valid = false;
+                    addLoader() // add loading animation
+                    showMessage('error', 'Please','fill out all required fields');
+                }
+            }
+
+            // Step 2 Validation: School Information
+            if (step === 2) {
+                const schoolname = document.getElementById('schoolname').value;
+                const department = document.getElementById('department').value;
+                const level = document.getElementById('level').value;
+                if (!schoolname || !department || !level) {
+                    valid = false;
+                    addLoader() // add loading animation
+                    showMessage('error', 'Please','fill out all required fields');
+                    
+                }
+            }
+
+            // Step 3 Validation: Location Information
+            if (step === 3) {
+                const region = document.getElementById('region').value;
+                const town = document.getElementById('town').value;
+                const quarter = document.getElementById('quarter').value;
+                if (!region || !town || !quarter) {
+                    valid = false;
+                    addLoader() // add loading animation
+                    showMessage('error', 'Please','fill out all required fields');
+                }
+            }
+
+            // Step 4 Validation: Contact Information
+            if (step === 4) {
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                if (!email || !phone) {
+                    valid = false;
+                    addLoader() // add loading animation
+                    showMessage('error', 'Please','fill out all required fields');
+                }
+            }
+
+            // Step 5 Validation: Password Information
+            if (step === 5) {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                if (!password || !confirmPassword || password !== confirmPassword) {
+                    valid = false;
+                    addLoader() // add loading animation
+                    showMessage('error', 'Please','Make sure the passwords matches each other');
+                }
+            }
+
+             // Special validation for email and password fields
+            const emailField = currentStepForm.querySelector('#email');
+            if (emailField && emailField.required && !isValidEmail(emailField.value)) {
+                valid = false;
+                emailField.classList.add('border-red-500');
+            }
+
+            const passwordField = currentStepForm.querySelector('#password');
+            const confirmPasswordField = currentStepForm.querySelector('#confirm-password');
+            if (passwordField && confirmPasswordField) {
+                if (passwordField.value !== confirmPasswordField.value) {
+                    valid = false;
+                    confirmPasswordField.classList.add('border-red-500');
+                    addLoader()
+                    showMessage("Passwords do not match.");
+                }
+            }
+            return valid;
+        }
+        // JavaScript code for handling the form navigation
+        let currentStep = 1;
+        const totalSteps = 5;
+    
+        // Function to go to the next step
+        function goToStep(to, from=0) {
+            let step = to
+
+            if (step < 1 || step > totalSteps) return;
+
+            // Validate the current step before proceeding to the next one
+            if(to > from ) {
+                if (!validateStep(currentStep)) {
+                    return;
+                }
+            }
+            // Hide all steps
+            document.querySelectorAll('.form-step').forEach((stepElement) => {
+                stepElement.classList.remove('active');
+            });
+            // Show current step
+            document.querySelector(`.form-step-${step}`).classList.add('active');
+            currentStep = step;
+        }
+    
+        // Next buttons for each step
+        document.getElementById('next-1').addEventListener('click', () => goToStep(currentStep + 1,currentStep));
+        document.getElementById('next-2').addEventListener('click', () => goToStep(currentStep + 1,currentStep));
+        document.getElementById('next-3').addEventListener('click', () => goToStep(currentStep + 1,currentStep));
+        document.getElementById('next-4').addEventListener('click', () => goToStep(currentStep + 1,currentStep));
+    
+        // Previous buttons for each step
+        document.getElementById('prev-2').addEventListener('click', () => goToStep(currentStep - 1,currentStep));
+        document.getElementById('prev-3').addEventListener('click', () => goToStep(currentStep - 1,currentStep));
+        document.getElementById('prev-4').addEventListener('click', () => goToStep(currentStep - 1,currentStep));
+        document.getElementById('prev-5').addEventListener('click', () => goToStep(currentStep - 1,currentStep));
+    
+        // Initialize the form to start at Step 1
+        //goToStep(currentStep);
+    
+        const regionData = {
+            "adamawa": {
+                towns: {
+                    "Ngaoundéré": ["Bamyanga", "Dang", "Bini", "Tongo Gandima"],
+                    "Meiganga": ["Meiganga Centre", "Gada-Mabanga", "Djohong"],
+                    "Tibati": ["Tibati Centre", "Ngaoundal", "Banyo"]
+                }
+            },
+            "center": {
+                towns: {
+                    "Yaoundé": ["Mfoundi", "Ekounou", "Nkolbisson", "Biyem-Assi", "Mvog-Ada", "Essos"],
+                    "Mbalmayo": ["Akom", "Nkolbisson", "Mbalmayo Centre"],
+                    "Obala": ["Obala Centre", "Nkolnda", "Nkometou"]
+                }
+            },
+            "east": {
+                towns: {
+                    "Bertoua": ["Bertoua Central", "Mokolo", "Ngaikada"],
+                    "Abong-Mbang": ["Nkolmetet", "Mbiame", "Nlong"],
+                    "Batouri": ["Batouri Centre", "Kentzou", "Kette"]
+                }
+            },
+            "far_north": {
+                towns: {
+                    "Maroua": ["Domayo", "Pitoaré", "Doualaré", "Salak"],
+                    "Kousséri": ["Kousséri Centre", "Madina", "Goulfey"],
+                    "Mora": ["Mora Centre", "Kolofata", "Tokombéré"]
+                }
+            },
+            "littoral": {
+                towns: {
+                    "Douala": ["Akwa", "Bonaberi", "Deido", "Logbaba", "New Bell"],
+                    "Nkongsamba": ["Nkongsamba 1", "Nkongsamba 2", "Nkongsamba 3"],
+                    "Manjo": ["Manjo Centre", "Mbanga", "Loum"]
+                }
+            },
+            "north": {
+                towns: {
+                    "Garoua": ["Plateau", "Poumpoumré", "Laindé", "Bocklé"],
+                    "Guider": ["Guider Centre", "Figuil", "Mayo Oulo"],
+                    "Pitoa": ["Pitoa Centre", "Demsa", "Beka"]
+                }
+            },
+            "northwest": {
+                towns: {
+                    "Bamenda": ["Mokolo", "Nkwen", "Nkwen Central", "Mankon", "Mile 2"],
+                    "Kumbo": ["Kumbo Central", "Mbve", "Tobin"],
+                    "Ndop": ["Bamunka", "Bambalang", "Bamali"]
+                }
+            },
+            "south": {
+                towns: {
+                    "Ebolowa": ["Ebolowa I", "Ebolowa II", "Nko'ovos"],
+                    "Kribi": ["Kribi I", "Kribi II", "Grand Batanga"],
+                    "Sangmélima": ["Sangmélima Centre", "Nkolandom", "Oveng"]
+                }
+            },
+            "southwest": {
+                towns: {
+                    "Buea": ["Molyko", "Muea", "Great Soppo", "Buea Town"],
+                    "Limbe": ["Bota", "Mile 1", "Mile 2", "Limbe 2"],
+                    "Kumba": ["Kumba Town", "Fiango", "Kosala"]
+                }
+            },
+            "west": {
+        towns: {
+            "Bafoussam": ["Manga", "Tamdja", "Banego", "Djeleng"],
+            "Dschang": ["Dschang Centre", "Fongo-Tongo", "Fokoué"],
+            "Mbouda": ["Mbouda Centre", "Babadjou", "Batcham"]
+        }
+    }
+        };
+
+        const regionSelect = document.getElementById("region");
+        const townSelect = document.getElementById("town");
+        const quarterSelect = document.getElementById("quarter");
+
+        // Function to update the towns based on selected region
+        regionSelect.addEventListener("change", function() {
+            const region = this.value;
+            if (region && regionData[region]) {
+                // Enable the town select and populate with towns
+                townSelect.disabled = false;
+                townSelect.innerHTML = '<option value="">Select Town</option>';
+                const towns = regionData[region].towns;
+                for (const town in towns) {
+                    const option = document.createElement("option");
+                    option.value = town;
+                    option.textContent = town;
+                    townSelect.appendChild(option);
+                }
+                // Reset and disable the quarter select
+                quarterSelect.disabled = true;
+                quarterSelect.innerHTML = '<option value="">Select Quarter</option>';
+            } else {
+                // Disable and reset town select if no region is selected
+                townSelect.disabled = true;
+                townSelect.innerHTML = '<option value="">Select Town</option>';
+                quarterSelect.disabled = true;
+                quarterSelect.innerHTML = '<option value="">Select Quarter</option>';
+            }
+        });
+
+        // Function to update the quarters based on selected town
+        townSelect.addEventListener("change", function() {
+            const region = regionSelect.value;
+            const town = this.value;
+            if (town && regionData[region] && regionData[region].towns[town]) {
+                // Enable the quarter select and populate with quarters
+                quarterSelect.disabled = false;
+                quarterSelect.innerHTML = '<option value="">Select Quarter</option>';
+                const quarters = regionData[region].towns[town];
+                quarters.forEach(quarter => {
+                    const option = document.createElement("option");
+                    option.value = quarter;
+                    option.textContent = quarter;
+                    quarterSelect.appendChild(option);
+                });
+            } else {
+                // Disable quarter select if no town is selected
+                quarterSelect.disabled = true;
+                quarterSelect.innerHTML = '<option value="">Select Quarter</option>';
+            }
+        });
+    
+        function register(event){
+            event.preventDefault();
+            if (!validateStep(currentStep)) {
+                    return;
+                }
+            // Create a FormData object from the form
+            var formData = new FormData(document.forms[0]);
+
+            var fullname = document.getElementById('name')
+            var email = document.getElementById('email')
+            var phonenumber = document.getElementById('phone')
+            var password = document.getElementById('password')
+            var dob = document.getElementById('DOB')
+            var school_name = document.getElementById('schoolname')
+            var department = document.getElementById('department')
+            var level = document.getElementById('level')
+            var region = document.getElementById('region')
+            var town = document.getElementById('town')
+            var quarter = document.getElementById('quarter')
+            
+            const signupData = {
+                name : fullname.value,
+                email : email.value,
+                phonenumber : phonenumber.value,
+                password : password.value
+            }
+
+            const registrationData = {
+                fullname: fullname.value,           
+                dob: dob.value,
+                school_name: school_name.value,
+                department: department.value,
+                level: level.value,
+                region: region.value,
+                town: town.value,
+                quarter: quarter.value,
+            }
+
+            //save data  in cookies
+            setCookie('registrationData', JSON.stringify(registrationData), daysToExpire = 7, path = '/');
+            console.log('cookie set')
+            const token = defaultToken;  
+            if (!token) {
+                console.error("Token is missing");
+                window.location.assign('login.html?'+window.location.pathname+window.location.search);
+            }
+            try {
+                addLoader()
+                const xhr = new XMLHttpRequest();
+
+                //signup the new user
+                xhr.open('POST', 'https://auth.digimarkconsulting.cm/api/auth/signup', true);
+                //xhr.open('POST', 'http://localhost:3001/api/auth/signup', true);
+
+                // Set the Authorization header
+                xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+
+                // Set the content type header for sending form data
+                //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                // Define a function to handle the response
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // Parse the response if the request is successful
+                        const result = JSON.parse(xhr.responseText);
+                                    
+                        showMessage('success', 'Good', result.message, 'email-verification.html')
+                    } else {
+                        // Handle errors
+                        const result = JSON.parse(xhr.responseText);
+                        showMessage('error', 'Oops', `Sorry, ${result.message}`)
+                        console.error(`HTTP error! status: ${xhr.status}`);
+                    }
+                };
+
+                // Define a function to handle any network errors
+                xhr.onerror = function() {
+                    showMessage('error', 'Oops', 'Request failed')
+                    console.error('Request failed');
+                };
+
+                // Send the request with form data
+                xhr.send(JSON.stringify(signupData));
+
+            
+            } catch (error) {
+                console.error('Failed to fetch department data:', error);
+            }
+        
+            //alert('Your Application has been successfully sent')
+            //window.location.assign("home.html")
+
+        }  
+
+
+        //managing the department input with a dropdown list
+        const departments = [
+            "Software Engineering",
+            "Computer Science and Network",
+            "Computer Graphics and Web design",
+            "Ecommerce and digital marketing",
+            "Information Systems Management",
+            "Database Management",
+            "Network and security",
+            "Electrotechniques",
+            "Mechanical Engineering"
+        ];
+
+        const departmentInput = document.getElementById('department');
+        const departmentList = document.getElementById('department-list');
+
+        departmentInput.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            departmentList.innerHTML = '';
+            if (!value) {
+                departmentList.style.display = 'none';
+                return;
+            }
+            // Filter and sort by match position and alphabetically
+            const filtered = departments
+                .filter(dep => dep.toLowerCase().includes(value))
+                .sort((a, b) => {
+                    const aIndex = a.toLowerCase().indexOf(value);
+                    const bIndex = b.toLowerCase().indexOf(value);
+                    if (aIndex === bIndex) return a.localeCompare(b);
+                    return aIndex - bIndex;
+                });
+
+            if (filtered.length === 0) {
+                departmentList.style.display = 'none';
+                return;
+            }
+
+            filtered.forEach(dep => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item list-group-item-action';
+                li.textContent = dep;
+                li.onclick = function() {
+                    departmentInput.value = dep;
+                    departmentList.style.display = 'none';
+                };
+                departmentList.appendChild(li);
+            });
+            departmentList.style.display = 'block';
+        });
+
+        // Hide the list when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!departmentInput.contains(e.target) && !departmentList.contains(e.target)) {
+                departmentList.style.display = 'none';
+            }
+        });
+        
+    </script>
+
+</body>
+</html>
