@@ -43,30 +43,336 @@
           },
         },
       };
-      const toggleButtons = document.querySelectorAll('.event-system');
-    toggleButtons.forEach(section => {
-      const toggleBtn = document.createElement("button");
-      toggleBtn.innerText = "Show Details";
-      toggleBtn.style.cssText = "margin-top: 1em; background-color: #DF8142; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;";
-
-      const details = section.querySelector(".event-text");
-      toggleBtn.addEventListener("click", () => {
-        if (details.style.display === "none") {
-          details.style.display = "block";
-          toggleBtn.innerText = "Hide Details";
-        } else {
-          details.style.display = "none";
-          toggleBtn.innerText = "Show Details";
-        }
-      });
-
-      details.style.display = "none";
-      toggleBtn.innerText = "Show Details";
-      section.appendChild(toggleBtn);
-    });
-
+     
     </script>
     <style>
+      /* carousel */
+      .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'Space Mono', monospace; }
+        
+        .carousel-container {
+            position: relative;
+            /* use min-height so shorter viewports don't force overlap and allow following sections to flow */
+            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 50%, #e74c3c 100%);
+            z-index: 1; /* ensure carousel sits behind content that follows */
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: scale(0.95);
+            pointer-events: none; /* prevent inactive slides from blocking interactions */
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 140, 66, 0.7) 0%, 
+                rgba(255, 107, 53, 0.65) 50%, 
+                rgba(231, 76, 60, 0.7) 100%);
+            z-index: 1;
+            pointer-events: none; /* ensure overlay doesn't capture clicks */
+        }
+        
+        .carousel-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .carousel-content h1 {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            animation: slideInUp 1s ease-out;
+             margin-bottom: 1.5rem;
+        }
+        
+        .carousel-content p {
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInUp 1s ease-out 0.2s both;
+            margin-bottom: 0;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 16px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .carousel-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(1.1);
+        }
+        
+        .carousel-dot.active {
+            background: #ffffff;
+            transform: scale(1.3);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .carousel-arrow {
+             position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 20px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        
+        .carousel-arrow.prev {
+            left: 40px;
+        }
+        
+        .carousel-arrow.next {
+            right: 40px;
+        }
+        
+        /* Call to Action Buttons */
+        .carousel-cta {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .carousel-cta button {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-cta .btn-primary {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            color: white;
+        }
+        
+        .carousel-cta .btn-primary:hover {
+            background: linear-gradient(135deg, #ff7a2e, #ff5a1f);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel-cta .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .carousel-cta .btn-secondary:hover {
+            background: white;
+            color: #ff6b35;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Statistics Section */
+        .carousel-stats {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            width: 100%;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .carousel-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            
+            .carousel-arrow.prev {
+                left: 20px;
+            }
+            
+            .carousel-arrow.next {
+                right: 20px;
+            }
+            
+           .carousel-nav {
+                bottom: 20px;
+                gap: 12px;
+                padding: 10px 16px;
+            }
+            
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .carousel-cta {
+                 bottom: 80px;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .carousel-cta button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+             .carousel-content h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .carousel-content p {
+                font-size: 1.1rem !important;
+            }
+            
+            .stats-grid {
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                padding: 1rem 0.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+        }
+        
       
      
   
@@ -210,66 +516,75 @@
         </div>
       </header>
 
-      <section class="py-20 bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white">
-        <div class="container mx-auto px-4 text-center">
-          <h2 class="text-5xl font-bold mb-6">DigiMark Tech Innovation Showcase 2025</h2>
-  <div class="timer flex flex-wrap justify-center gap-4 p-6 bg-white rounded-xl shadow-md">
-  <div class="time-box flex-1 min-w-[80px] text-center bg-orange-200 p-4 rounded-lg">
-    <h1 id="days" class="text-3xl font-bold text-red-700">0</h1>
-    <p class="text-sm text-gray-700">Days</p>
-  </div>
-  <div class="time-box flex-1 min-w-[80px] text-center bg-orange-200 p-4 rounded-lg">
-    <h1 id="hours" class="text-3xl font-bold text-red-700">0</h1>
-    <p class="text-sm text-gray-700">Hours</p>
-  </div>
-  <div class="time-box flex-1 min-w-[80px] text-center bg-orange-200 p-4 rounded-lg">
-    <h1 id="minutes" class="text-3xl font-bold text-red-700">0</h1>
-    <p class="text-sm text-gray-700">Mins</p>
-  </div>
-  <div class="time-box flex-1 min-w-[80px] text-center bg-orange-200 p-4 rounded-lg">
-    <h1 id="seconds" class="text-3xl font-bold text-red-700">0</h1>
-    <p class="text-sm text-gray-700">Secs</p>
-  </div>
-</div>
-
-
-          <script>
-    function updateCountdown() {
-      const now = new Date();
-      const targetDate = new Date(now.getFullYear(), now.getMonth(), 22, 0, 0, 0);
-
-      // If today is past the 22nd, set target to next month
-      if (now > targetDate) {
-        targetDate.setMonth(targetDate.getMonth() + 1);
-      }
-
-      const diff = targetDate - now;
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown(); // Initial call
-  </script>
-
-          <p class="text-xl mb-8 max-w-3xl mx-auto">
-            Experience the future today as our visionary interns unveil bold, forward-thinking technologies—creative solutions designed to reshape industries and tackle real-world challenges with ingenuity and impact.
-        </p>
-       <a href="#projects" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-lg shadow hover:bg-orange-600 transition duration-300">
-  Explore Projects
-</a>
-
-
-        </div>
-      </section >
+      
+            <section id="home" class="carousel-container">
+          <!-- Carousel Slides -->
+          <div class="carousel-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/Digimark\ Tech\ Event\ Banner.png')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          DIGIMARK TECH EVENT 2025
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Inspiring keynotes that shaped the future of business
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/WhatsApp\ Image\ 2025-08-22\ at\ 18.07.24.jpeg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          Networking Excellence
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Where industry leaders connect and collaborate
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/carousel3.jpeg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          World-Class Production
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Experience innovation through immersive technology
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Carousel Navigation -->
+          <button class="carousel-arrow prev" id="prev-slide">
+              <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-arrow next" id="next-slide">
+              <i class="fas fa-chevron-right"></i>
+          </button>
+          
+          <!-- Carousel Dots -->
+          <div class="carousel-nav">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+              <div class="carousel-dot" data-slide="2"></div>
+          </div>
+          
+          <!-- Call to Action Overlay -->
+          <div class="carousel-cta">
+              <button class="btn-primary">
+                  Explore Gallery
+              </button>
+              <button class="btn-secondary">
+                  Share Your Photos
+              </button>
+          </div>
+      </section>
+       
+      
       <section id="projects" class="py-20 bg-white">
   <!-- Your projects content here -->
 
@@ -748,6 +1063,8 @@
       }
     });
   </script>
+
+  <script src="js/scripts.js"></script>
           </div>
 
           <div class="bg-white rounded-lg p-8 shadow-lg">
@@ -878,7 +1195,7 @@
         <img src="assets\img\intern_4.jpg" alt="Intern Image" class="w-full h-full object-cover">
       </div>
       <div class="p-4">
-        <h4 class="text-lg font-semibold text-gray-800 mb-2">Honoring Interns’ Success with the CEO</h4>
+        <h4 class="text-lg font-semibold text-gray-800 mb-2">Honoring Interns' Success with the CEO</h4>
         <p class="text-sm text-gray-600 hidden group-hover:block transition-opacity duration-300">
           A proud moment as interns pose with the CEO, marking the successful completion of their transformative internship journey.
         </p>
@@ -1073,7 +1390,7 @@
             </a>
             <a href="https://www.instagram.com/digimark_consulting01/?igsh=MXRtMngwMm9rdTZsNQ%3D%3D#" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
               <svg class="w-4 h-4 text-orange-700" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.974-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.131 4.602.425 3.635 1.392 2.668 2.359 2.374 3.532 2.315 4.809.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.059 1.277.353 2.45 1.32 3.417.967.967 2.14 1.261 3.417 1.32C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.277-.059 2.45-.353 3.417-1.32.967-.967 1.261-2.14 1.32-3.417.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.277-.353-2.45-1.32-3.417-.967-.967-2.14-1.261-3.417-1.32C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.975-2.242 1.261-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.974-1.246-2.242-1.308-3.608C2.175 8.332 2.163 8.741 2.163 12s.012 3.668.07 4.948c.059 1.277.353 2.45 1.32 3.417.967.967 2.14 1.261 3.417 1.32C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.277-.059 2.45-.353 3.417-1.32.967-.967 1.261-2.14 1.32-3.417.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.277-.353-2.45-1.32-3.417-.967-.967-2.14-1.261-3.417-1.32C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
               </svg>
             </a>
             <a href="#" class="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center hover:bg-orange-300 transition-colors">
@@ -1188,7 +1505,7 @@
             </div>
             <div class="flex items-start gap-3">
               <svg class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/>
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/>
               </svg>
               <span class="text-orange-800 text-sm">training@digimarkconsulting.cm</span>
             </div>
