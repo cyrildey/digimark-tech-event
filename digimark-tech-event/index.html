@@ -92,9 +92,9 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(255, 140, 66, 0.7) 0%, 
-                rgba(255, 107, 53, 0.65) 50%, 
-                rgba(231, 76, 60, 0.7) 100%);
+                rgba(255, 140, 66, 0.35) 0%, 
+                rgba(255, 107, 53, 0.30) 50%, 
+                rgba(231, 76, 60, 0.35) 100%);
             z-index: 1;
             pointer-events: none; /* ensure overlay doesn't capture clicks */
         }
@@ -260,56 +260,76 @@
             box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
         }
         
-        /* Statistics Section */
-        .carousel-stats {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
+           .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #ffffff;
+            border-radius: 0.5rem; /* rounded-lg */
+            border-left: 4px solid #f97316; /* border-l-orange-500 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.25); /* light orange glow */
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
             width: 100%;
-            max-width: 800px;
-            padding: 0 2rem;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
         }
         
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            text-align: center;
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .stat-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 1.5rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+          .upload-area {
+            border: 2px dashed #4299e1;
             transition: all 0.3s ease;
         }
         
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
+        .upload-area.dragover {
+            border-color: #ff6b6b;
+            background-color: rgba(255, 107, 107, 0.1);
         }
         
-        .stat-number {
-            font-family: 'Space Mono', monospace;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin-bottom: 0.5rem;
+        
+        /* Section separation */
+        section + section {
+            border-top: 1px solid #e5e7eb; /* gray-200 */
         }
         
-        .stat-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
+        /* Uniform card heights in grids */
+        .grid.items-stretch > .bg-white.rounded-lg.shadow-md {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
-        
+        /* Featured Projects: reduce and unify card height */
+        #projects-grid > .bg-white.rounded-lg.shadow-md {
+            height: 18rem; /* reduced and uniform */
+            overflow: hidden;
+        }
+       
         /* Responsive Design */
         @media (max-width: 768px) {
             .carousel-arrow {
@@ -356,24 +376,23 @@
                 font-size: 1.1rem !important;
             }
             
-            .stats-grid {
-                gap: 1rem;
-            }
-            
-            .stat-item {
-                padding: 1rem 0.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .stat-label {
-                font-size: 0.8rem;
-            }
+        
         }
         
-      
+       .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
      
   
   .team-item {
@@ -381,52 +400,11 @@
   border: 1px solid #eee;
   overflow: hidden;
 }
-.countdown-container {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-.timer {
-      display: flex;
-      gap: 20px;
-      background-color: #fff8f0;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
-    }
 
-    .time-box {
-      text-align: center;
-      background-color: #ffe5b4;
-      padding: 20px;
-      border-radius: 10px;
-      color: #333;
-      min-width: 80px;
-    }
 
 
     h1 {
       color: #d11f1f;
-    }
-
-    .timer {
-      font-size: 5rem;
-      margin-top: 20px;
-      color: #222;}
-.team-img {
-      width: 250px;
-      height: 250px;
-      overflow: hidden;
-      margin: auto;
-    }
-    .team-img img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-    .team-icon .btn {
-      font-size: 16px;
     }
 
       .bg-gradient-to-br {
@@ -493,7 +471,33 @@
   color: #d95f00; /* Slightly deeper orange on hover */
 }
 
-    </style>
+    /* Enhanced navbar styling */
+    header .nav-beauty a {
+      position: relative;
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 9999px; /* pill */
+      font-weight: 500;
+      color: #374151; /* gray-700 */
+      transition: color .2s ease, background-color .2s ease, transform .2s ease;
+    }
+    header .nav-beauty a:hover {
+      color: #ea580c; /* orange-600 */
+      background-color: rgba(234,88,12,0.08);
+      transform: translateY(-1px);
+    }
+    header .nav-beauty a.active {
+      color: #ffffff;
+      background: linear-gradient(90deg, #f97316, #ef4444);
+      box-shadow: 0 6px 20px rgba(249,115,22,0.25);
+    }
+    @media (max-width: 768px) {
+      header .nav-beauty {
+        gap: 0.5rem;
+      }
+      header .nav-beauty a { padding: 0.4rem 0.6rem; }
+    }
+      </style>
   </head>
   <body>
     <div id="root" class="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
@@ -506,11 +510,15 @@
               </div>
               <h1 class="text-2xl font-bold text-gray-800">DigiMark Tech Event</h1>
             </div>
-            <nav class="hidden md:flex space-x-6">
-              <a href="#projects" class="text-gray-600 hover:text-orange-500 transition-colors">Projects</a>
-              <a href="#about" class="text-gray-600 hover:text-orange-500 transition-colors">About</a>
-              <a href="#blog" class="text-gray-600 hover:text-orange-500 transition-colors">Blog</a>
-              <a href="#testimonials" class="text-gray-600 hover:text-orange-500 transition-colors">Testimonials</a>
+            <nav class="hidden md:flex nav-beauty items-center gap-3">
+              <a href="#home">Home</a>
+              <a href="#highlights">Highlights</a>
+              <a href="#videos">Videos</a>
+              <a href="#gallery">Gallery</a>
+              <a href="#press">Press</a>
+              <a href="#projects">Projects</a>
+              <a href="#blog">Blog</a>
+              <a href="#contact">Contact</a>
             </nav>
           </div>
         </div>
@@ -532,7 +540,7 @@
               </div>
           </div>
           
-          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/WhatsApp\ Image\ 2025-08-22\ at\ 18.07.24.jpeg')">
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car0.jpg')">
               <div class="carousel-content">
                   <div class="max-w-4xl mx-auto px-4">
                       <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
@@ -557,36 +565,351 @@
                   </div>
               </div>
           </div>
-          
-          <!-- Carousel Navigation -->
-          <button class="carousel-arrow prev" id="prev-slide">
-              <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="carousel-arrow next" id="next-slide">
-              <i class="fas fa-chevron-right"></i>
-          </button>
-          
-          <!-- Carousel Dots -->
-          <div class="carousel-nav">
-              <div class="carousel-dot active" data-slide="0"></div>
-              <div class="carousel-dot" data-slide="1"></div>
-              <div class="carousel-dot" data-slide="2"></div>
+
+          <div class="carousel-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car1.jpeg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          DIGIMARK TECH EVENT 2025
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Inspiring keynotes that shaped the future of business
+                      </p>
+                  </div>
+              </div>
           </div>
           
-          <!-- Call to Action Overlay -->
-          <div class="carousel-cta">
-              <button class="btn-primary">
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car2.jpg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          Networking Excellence
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Where industry leaders connect and collaborate
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car3.jpg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          World-Class Production
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Experience innovation through immersive technology
+                      </p>
+                  </div>
+              </div>
+          </div>
+
+           <div class="carousel-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car4.jpeg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          DIGIMARK TECH EVENT 2025
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Inspiring keynotes that shaped the future of business
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car5.jpg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          Networking Excellence
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Where industry leaders connect and collaborate
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="carousel-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/assets/Hero/car6.jpg')">
+              <div class="carousel-content">
+                  <div class="max-w-4xl mx-auto px-4">
+                      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 text-white">
+                          World-Class Production
+                      </h1>
+                      <p class="text-xl md:text-2xl mb-8 font-light text-white">
+                          Experience innovation through immersive technology
+                      </p>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Carousel Navigation (Previous / Next controls) -->
+          <button class="carousel-arrow prev" id="prev-slide" aria-label="Previous slide" title="Previous slide">
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="carousel-arrow next" id="next-slide" aria-label="Next slide" title="Next slide">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+          
+          <!-- Carousel Dots (pagination) -->
+          <div class="carousel-nav" role="tablist" aria-label="Carousel Pagination">
+              <div class="carousel-dot active" data-slide="0" role="tab" aria-selected="true" aria-controls="slide-0"></div>
+              <div class="carousel-dot" data-slide="1" role="tab" aria-selected="false" aria-controls="slide-1"></div>
+              <div class="carousel-dot" data-slide="2" role="tab" aria-selected="false" aria-controls="slide-2"></div>
+              <div class="carousel-dot" data-slide="3" role="tab" aria-selected="false" aria-controls="slide-3"></div>
+              <div class="carousel-dot" data-slide="4" role="tab" aria-selected="false" aria-controls="slide-4"></div>
+              <div class="carousel-dot" data-slide="5" role="tab" aria-selected="false" aria-controls="slide-5"></div>
+              <div class="carousel-dot" data-slide="6" role="tab" aria-selected="false" aria-controls="slide-6"></div>
+              <div class="carousel-dot" data-slide="7" role="tab" aria-selected="false" aria-controls="slide-7"></div>
+              <div class="carousel-dot" data-slide="8" role="tab" aria-selected="false" aria-controls="slide-8"></div>
+          </div>
+          
+          <!-- Call to Action Overlay (centered CTA buttons) -->
+          <div class="carousel-cta" aria-hidden="false">
+              <button class="btn-primary" aria-label="Explore gallery">
                   Explore Gallery
-              </button>
-              <button class="btn-secondary">
-                  Share Your Photos
               </button>
           </div>
       </section>
        
-      
-      <section id="projects" class="py-20 bg-white">
-  <!-- Your projects content here -->
+
+    <!-- Event Highlights -->
+    <section id="highlights" class="py-16 bg-gradient-to-br from-orange-50 to-red-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Event Highlights</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From inspiring keynotes to networking breakthroughs, explore the moments that made our summit unforgettable
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 items-stretch">
+                <div class="bg-white rounded-lg shadow-md hover:shadow-orange-200/50 hover:shadow-2xl transition-shadow duration-300 border-l-4 border-l-orange-500 overflow-hidden">
+                    <img src="assets/Highlights/high1.jpeg" alt="Keynote Speaker" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2 text-gray-800">Inspiring Keynotes</h3>
+                        <p class="text-gray-600">Industry leaders shared groundbreaking insights on the future of technology and innovation.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-orange-200/50 hover:shadow-2xl transition-shadow duration-300 border-l-4 border-l-orange-500 overflow-hidden">
+                    <img src="assets/Highlights/high3.jpeg" alt="Networking" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2 text-gray-800">Dynamic Networking</h3>
+                        <p class="text-gray-600">Meaningful connections were forged between professionals from diverse industries.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-orange-200/50 hover:shadow-2xl transition-shadow duration-300 border-l-4 border-l-orange-500 overflow-hidden">
+                    <img src="assets/Highlights/high2.jpeg" alt="Stage Production" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2 text-gray-800">World-Class Production</h3>
+                        <p class="text-gray-600">State-of-the-art lighting and stage design created an immersive experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Event Videos Section -->
+    <section id="videos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Event Videos</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Relive the most impactful moments through our curated video collection
+                </p>
+            </div>
+            
+            <!-- Featured Video (populated by script) -->
+            <div id="featured-video" class="mb-12"></div>
+            
+            <!-- Video Grid (populated by script) -->
+            <div id="videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 items-stretch"></div>
+
+           <!-- Load More Videos Button -->
+          <div class="text-center mt-12">
+            <button id="load-more-videos" class="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-full font-semibold transition-all hover:scale-105">
+                 Load More Videos
+             </button>
+         </div>
+        </div>
+    </section>
+
+
+    <!-- Interactive Gallery -->
+    <section id="gallery" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Photo Gallery</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Browse through captured moments from our incredible event
+                </p>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 items-stretch">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-full font-semibold transition-all hover:scale-105">
+                    Load More Photos
+                </button>
+            </div>
+        </div>
+    </section>
+
+   <!--
+    //Upload Section
+    <section id="upload" class="py-20 bg-gradient-to-br from-accent to-blue-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-4">
+                Share Your Moments
+            </h2>
+            <p class="text-xl mb-12 opacity-90">
+                Upload your photos and videos to be part of our collective memory
+            </p>
+            
+            <div class="bg-white rounded-2xl p-8 text-gray-800 shadow-2xl">
+                <div id="upload-area" class="upload-area rounded-xl p-12 text-center">
+                    <div class="mb-6">
+                        <i class="fas fa-cloud-upload-alt text-6xl text-accent mb-4"></i>
+                        <h3 class="text-2xl font-semibold mb-2">Drag & Drop Your Files</h3>
+                        <p class="text-gray-600">or click to browse your device</p>
+                    </div>
+                    <input type="file" id="file-input" multiple accept="image/*,video/*" class="hidden">
+                    <button id="browse-btn" class="bg-accent hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all hover-lift">
+                        Choose Files
+                    </button>
+                </div>
+                
+                 Upload Progress -->
+                 <!--
+                <div id="upload-progress" class="hidden mt-8">
+                    <div class="bg-gray-200 rounded-full h-3 mb-4">
+                        <div id="progress-bar" class="bg-accent h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600">Uploading... <span id="progress-text">0%</span></p>
+                </div>
+                
+                 Upload Success 
+                <div id="upload-success" class="hidden mt-8 p-4 bg-green-100 rounded-lg">
+                    <i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i>
+                    <p class="text-green-700 font-semibold">Files uploaded successfully!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+  -->
+    <!-- Press & Media Section -->
+    <section id="press" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    Press & Media
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Media coverage and press releases from the DIGIMARK's Students Tech Show Case 2025
+                </p>
+            </div>
+            
+            <!-- Press Coverage -->
+            <div class="mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 items-stretch place-items-center">
+                    <div class="press-item w-full max-w-[28rem] mx-auto bg-white rounded-lg shadow-md hover:shadow-orange-200/50 hover:shadow-2xl transition-shadow duration-300 border-l-4 border-l-orange-500 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="assets/media/camrTri.jpeg" alt="cameroon tribune" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Cameroon Tribune</h4>
+                                <p class="text-sm text-gray-500">August 23, 2025</p>
+                            </div>
+                        </div>
+                        <h5 class="font-semibold text-lg mb-2">At Digimark Consulting: These Interns Set To Roll Out Own Companies and Startups</h5>
+                        <p class="text-gray-600 text-sm mb-4">The university students on August 22, 2025 in Yaounde presented their innovative, digital-based business projects. Sequel to 10 weeks of intensive practicum training and mentoring...</p>
+                        <a href="https://www.cameroon-tribune.cm/article.html/72486/en.html/at-digimark-consulting-these-interns-set-roll-out-own" class="text-orange-600 hover:text-orange-700 font-medium text-sm">Read Full Article →</a>
+                    </div>
+                    
+                    <div class="press-item w-full max-w-[28rem] mx-auto bg-white rounded-lg shadow-md hover:shadow-orange-200/50 hover:shadow-2xl transition-shadow duration-300 border-l-4 border-l-orange-500 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="assets/media/knews.avif" alt="knews" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">KNews</h4>
+                                <p class="text-sm text-gray-500">August 23, 2025</p>
+                            </div>
+                        </div>
+                        <h5 class="font-semibold text-lg mb-2">Interns unveil groundbreaking technologies at DigiMark's student tech showcase 2025</h5>
+                        <p class="text-gray-600 text-sm mb-4">The DigiMark office at Ekie, Yaoundé, was the vibrant hub of innovation on Friday, August 22, 2025 as the "Student Tech Innovation Showcase 2025" captivated an audience comprising parents, entrepreneurs, and industry enthusiasts. 
+
+...</p>
+                        <a href="https://simonkalla20.wixsite.com/knews/post/interns-unveil-groundbreaking-technologies-at-digimark-s-student-tech-showcase-2025" class="text-orange-600 hover:text-orange-700 font-medium text-sm">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <!-- Media Partners -->
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Media Partners</h3>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-orange-200/50 hover:shadow-2xl transition-shadow duration-300 p-8 border-l-4 border-l-orange-500 max-w-5xl mx-auto">
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center opacity-80">
+                        <div class="flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="/assets/media/crtv.png" alt="crtv" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-40 h-16 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="/assets/media/camrTri.jpeg" alt="cameroon-tribune" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="/assets/media/canal2.jpeg" alt="canal2" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="/assets/media/knews.``avif" alt="knews" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                         <div class="flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="/assets/media/Equinoxe_tv_logo.jpg" alt="Equinoxe_tv_logo" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                         <div class="flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="/assets/media/guardian post.jpg" alt="guardian post" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <p class="text-center text-gray-500 mt-6">
+                        Trusted by leading media outlets Countrywide
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ <section id="projects" class="py-20 bg-white">
+   <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    Presented Projects
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Innovative projects presented by students at the DIGIMARK's Tech Show Case 2025.
+                </p>
+            </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -656,6 +979,117 @@
   </div>
 </div>
 
+<!-- Wed Check -->
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4">
+  <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+    <div class="p-6">
+      <img src="assets/img/wedcheck.png" alt="Quick Ride Logo" class="w-12 h-12 mb-3 rounded-full">
+      <div class="flex justify-between items-start mb-2">
+        <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">Wed Check</span>
+        <span class="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-xs font-medium text-white">Mobile Development</span>
+      </div>
+      <h3 class="text-xl text-gray-800 font-semibold mb-2">Wed Check</h3>
+      <p class="text-gray-600 text-sm">Modern, technology-driven system designed to provide real-time online verification of marital status.</p>
+      <div class="hidden mt-3 text-sm text-gray-700 details">
+        prevents fraudulent marriages, and ensures tamper-proof records.es and safety-first policies, Quick Ride supports both urban and suburban mobility.
+      </div>
+      <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets/img/tryon.png" alt="SMARTID Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">TryOn Space</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Ecommerce Platform</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">TryOn Space</h3>
+    <p class="text-gray-600 text-sm">E-commerce platform that sells house furniture, clothes and accessories.</p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      The platform has Augmented Reality integrated to permit users try different articles they might want to purchase before actually buying it.
+
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets/img/dat.png" alt="SMARTID Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">DAT</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Timetable Automation</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">Digimark Automatic Timetable</h3>
+    <p class="text-gray-600 text-sm">DAT is a solution designed to manage scheduling by eliminating the inefficiencies of manual timetable generation-a process that is often time-consuming, prone to errors, and leads to scheduling conflicts.
+      </p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      
+
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets/img/digic.png" alt="SMARTID Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">DigiConnect</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Communication</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">DigiConnect</h3>
+    <p class="text-gray-600 text-sm">Digi-Connect is a web-based school management and communication system that helps universities and schools in Cameroon handle their daily academic and administrative activities in one place. 
+      
+      </p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      
+
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets/img/smarta.png" alt="SMARTID Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">Smart Attendance</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Attendace</span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">Smart Attendance</h3>
+    <p class="text-gray-600 text-sm">Smart Attendance is a web-based system that uses real-time image and video analysis to automatically record attendance, making the process faster, accurate, and secure.      
+      </p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      
+
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
+  <div class="p-6">
+    <img src="assets/img/cloud.png" alt="SMARTID Logo" class="w-12 h-12 mb-3 rounded-full">
+    <div class="flex justify-between items-start mb-2">
+      <span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">Local Cloud Server</span>
+      <span class="inline-flex items-center rounded-full bg-gray-500 px-2.5 py-0.5 text-xs font-medium text-white">Cloud </span>
+    </div>
+    <h3 class="text-xl text-gray-800 font-semibold mb-2">Local Cloud Server</h3>
+    <p class="text-gray-600 text-sm">Local Cloud Server is a self-hosted offline cloud system that provides secure file sharing, collaboration, and app hosting over a local network. It ensures privacy, low cost, and reliability without depending on the public internet.</p>
+    <div class="hidden mt-3 text-sm text-gray-700 details">
+      
+
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2 px-4 rounded-md">View Details</button>
+  </div>
+</div>
+
+
+
 <!-- SMARTID Student ID System -->
 <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-orange-500">
   <div class="p-6">
@@ -691,8 +1125,13 @@
           </div>
         </div>
       
+         <!--Wed Check-->
+         
+        <!--  -->
       </div>
       
+      <!-- Tryon Space
+
       <!-- JavaScript to Toggle Details -->
       <script>
         function toggleDetails(button) {
@@ -706,395 +1145,7 @@
           }
         }
       </script>
-      
-          <br><br>
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">Comming Soon</h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover more projects that will be showcased at the event.
-            </p>
-          </div>
-        </div></section>
-      
-      
-
-      <section id="about" class="py-16 bg-gradient-to-br from-orange-50 to-red-50">
-        <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">About DigiMark Consulting</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-              An initiative of like-minded individuals contributing to an emerging Cameroon through top-notch IT services and training
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            <div class="text-center bg-white rounded-lg p-6 shadow-lg">
-              <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 mb-2">
-                99
-              </div>
-              <p class="text-gray-600 text-sm">Success in getting happy customers</p>
-            </div>
-            <div class="text-center bg-white rounded-lg p-6 shadow-lg">
-              <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 mb-2">
-                200
-              </div>
-              <p class="text-gray-600 text-sm">Students Successfully trained</p>
-            </div>
-            <div class="text-center bg-white rounded-lg p-6 shadow-lg">
-              <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 mb-2">
-                300
-              </div>
-              <p class="text-gray-600 text-sm">Total clients who love DigiMark</p>
-            </div>
-            <div class="text-center bg-white rounded-lg p-6 shadow-lg">
-              <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 mb-2">
-                5
-              </div>
-              <p class="text-gray-600 text-sm">Stars reviews given by satisfied clients</p>
-            </div>
-          </div>
-<section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-10 text-center">Our Trusted Partners</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-      <!-- DIMS -->
-      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <img src="assets\img\Group 4.png" alt="DIMS Logo" class="w-10 h-10">
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">DIMS</a>
-      </div>
-
-      <!-- LaaTech -->
-      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <img src="assets\img\laahtech.png" alt="LaaTech Logo" class="w-10 h-10">
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">LaaTech</a>
-      </div>
-
-      <!-- Elysian -->
-      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <img src="assets\img\elysian-.png" alt="New Partner Logo" class="w-10 h-10">
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Elysian Media</a>
-      </div>
-
-      <!-- Splendor Travels -->
-      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <img src="assets\img\splendor.png" alt="Splendor Travels Logo" class="w-10 h-10">
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Splendor Travels</a>
-      </div>
-
-      <!-- Green House Energy and Gas Sarl -->
-      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <img src="assets\img\gheg white.png" alt="Green House Logo" class="w-10 h-10">
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Green House Energy and Gas Sarl</a>
-      </div>
-
-      <!-- EDEN -->
-      <div class="bg-white text-orange-600 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <img src="assets\img\eden.png" alt="EDEN Logo" class="w-10 h-10">
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">EDEN</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<section class="py-16 bg-white text-gray-800">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-10 text-center text-orange-600">Connect With Us</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-      
-      <!-- Social Card -->
-      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <i class="fab fa-facebook-f text-blue-600 text-2xl"></i>
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Facebook</a>
-      </div>
-
-      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <i class="fab fa-twitter text-blue-400 text-2xl"></i>
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">X</a>
-      </div>
-
-      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <i class="fab fa-linkedin-in text-blue-700 text-2xl"></i>
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">LinkedIn</a>
-      </div>
-
-      <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-shadow p-4 flex items-center space-x-4">
-        <i class="fab fa-instagram text-pink-500 text-2xl"></i>
-        <a href="https://internship.digimarkconsulting.cm/#" class="font-semibold hover:underline">Instagram</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-          <div class="mb-16">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">Our Services</h3>
-            <div class="container-fluid services py-5 mb-5">
-            <div class="container">
-                <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px; visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                    
-                    <h1>Services Built Specifically For Your Business</h1>
-                </div>
-                <div class="row g-5 services-inner">
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                        <div class="services-item bg-light">
-                            <div class="p-4 text-center services-content">
-                                <div class="services-content-icon">
-                                    <i class="fa fa-code fa-7x mb-4 text-primary"></i>
-                                    <h4 class="mb-3">Software Development</h4>
-                                    <p class="mb-4">Delivering custom software solutions tailored to optimize your operations and improve efficiency.</p>
-                                    <a href="https://www.digimarkconsulting.cm/user/details/software_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
-                        <div class="services-item bg-light">
-                            <div class="p-4 text-center services-content">
-                                <div class="services-content-icon">
-                                    <i class="fas fa-laptop fa-7x mb-4 text-primary"></i>
-                                    <h4 class="mb-3">Professional IT Training/ Reclycling</h4>
-                                    <p class="mb-4">Get the best hands on training in IT with practical problems and real world projects.</p>
-                                    <a href="https://www.digimarkconsulting.cm/user/details/training.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
-                        <div class="services-item bg-light">
-                            <div class="p-4 text-center services-content">
-                                <div class="services-content-icon">
-                                    <i class="fa fa-envelope-open fa-7x mb-4 text-primary"></i>
-                                    <h4 class="mb-3">Digital Marketing</h4>
-                                    <p class="mb-4">Implementing innovative marketing strategies to boost your visibility and connect with your target audience.</p>
-                                    <a href="https://www.digimarkconsulting.cm/user/details/digital_marketing_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                        <div class="services-item bg-light">
-                            <div class="p-4 text-center services-content">
-                                <div class="services-content-icon">
-                                    <i class="fas fa-user-secret fa-7x mb-4 text-primary"></i>
-                                    <h4 class="mb-3">Network and Security</h4>
-                                    <p class="mb-4">At DigiMark Consulting Sarl, we offer top-tier network and security services to help businesses safeguard their digital assets</p>
-                                    <a href="https://www.digimarkconsulting.cm/user/details/network_and_security_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
-                        <div class="services-item bg-light">
-                            <div class="p-4 text-center services-content">
-                                <div class="services-content-icon">
-                                    <i class="fa fa-external-link-alt fa-7x mb-4 text-primary"></i>
-                                    <h4 class="mb-3">Graphic and UI/UX Design</h4>
-                                    <p class="mb-4">Creating stunning visuals and branding solutions that communicate your message effectively.</p>
-                                    <a href="https://www.digimarkconsulting.cm/user/details/graphics_details.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
-                        <div class="services-item bg-light">
-                            <div class="p-4 text-center services-content">
-                                <div class="services-content-icon">
-                                    <i class="fas fa-chart-bar fa-7x mb-4 text-primary"></i>
-                                    <h4 class="mb-3">Data Sciences/Analysis</h4>
-                                    <p class="mb-4">At DigiMark Consulting Sarl, we help businesses unlock the power of data with our comprehensive data science and analysis services</p>
-                                    <a href="https://www.digimarkconsulting.cm/user/details/data_sciences.html" class="btn btn-orange text-white px-5 py-3 rounded-pill">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="services-item bg-light">
-                            
-                        </div>
-                    </div>
-                
-                </div>
-            </div>
-        </div>
-                
-        <div class="container-fluid py-5 mb-5 team">
-  <div class="container">
-    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
-      <h3 class="text-orange-600">Our Team</h3>
-      <h3 class="text-3xl font-bold text-center text-orange-600 mb-8">Meet Our Expert Team</h3>
-    </div>
-
-    <div class="owl-carousel team-carousel wow fadeIn" data-wow-delay=".5s">
-      
-      <!-- Team Member 1 -->
-      <div class="rounded team-item">
-        <div class="team-content">
-          <div class="team-img-icon">
-            <div class="team-img rounded-circle">
-              <img src="https://www.digimarkconsulting.cm/user/img/densley.png" class="img-fluid rounded-circle" height="250px" alt="">
-            </div>
-            <div class="team-name text-center py-3">
-              <h4>CHATIOH DENSLEY</h4>
-              <p class="m-0">CREATIVE OFFICER</p>
-            </div>
-            <div class="team-icon d-flex justify-content-center pb-4">
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 2 -->
-      <div class="rounded team-item">
-        <div class="team-content">
-          <div class="team-img-icon">
-            <div class="team-img rounded-circle">
-              <img src="assets/img/Joyce.jpg" class="img-fluid rounded-circle" height="250px" alt="">
-            </div>
-            <div class="team-name text-center py-3">
-              <h4>TAMBA JOYCELINE ATIM</h4>
-              <p class="m-0">PRODUCT MANAGER</p>
-            </div>
-            <div class="team-icon d-flex justify-content-center pb-4">
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 3 -->
-      <div class="rounded team-item">
-        <div class="team-content">
-          <div class="team-img-icon">
-            <div class="team-img rounded-circle">
-              <img src="assets/img/Deyou2.jpg" class="rounded-circle" height="250px" alt="">
-            </div>
-            <div class="team-name text-center py-3">
-              <h4>CYRIL DEYOU</h4>
-              <p class="m-0">CEO</p>
-            </div>
-            <div class="team-icon d-flex justify-content-center pb-4">
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 4 -->
-      <div class="rounded team-item">
-        <div class="team-content">
-          <div class="team-img-icon">
-            <div class="team-img rounded-circle">
-              <img src="assets/img/pic.jpg" class="rounded-circle" height="250px" alt="">
-            </div>
-            <div class="team-name text-center py-3">
-              <h4>KANJO ELKAMIRA NDI</h4>
-              <p class="m-0">COO</p>
-            </div>
-            <div class="team-icon d-flex justify-content-center pb-4">
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 5 -->
-      <div class="rounded team-item">
-        <div class="team-content">
-          <div class="team-img-icon">
-            <div class="team-img rounded-circle">
-              <img src="assets/img/Dylan.jpg" class="img-fluid rounded-circle" height="250px" alt="">
-            </div>
-            <div class="team-name text-center py-3">
-              <h4>DONFACK DYLANE</h4>
-              <p class="m-0">CTO</p>
-            </div>
-            <div class="team-icon d-flex justify-content-center pb-4">
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-instagram"></i></a>
-              <a class="btn btn-square btn-secondary text-white rounded-circle m-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div> <!-- End of Owl Carousel -->
-  </div>
-</div>
-
-           
-
-
-  <!-- JS Libraries -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-  <script>
-    new WOW().init();
-    $(".team-carousel").owlCarousel({
-      loop: true,
-      margin: 30,
-      nav: false,
-      dots: true,
-      autoplay: true,
-      autoplayTimeout: 3000,
-      responsive: {
-        0: { items: 1 },
-        600: { items: 2 },
-        1000: { items: 3 }
-      }
-    });
-  </script>
-
-  <script src="js/scripts.js"></script>
-          </div>
-
-          <div class="bg-white rounded-lg p-8 shadow-lg">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Our Office</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div class="flex items-center justify-center space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail text-orange-500 w-6 h-6"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span class="text-gray-700">training@digimarkconsulting.cm</span>
-                  </div>
-              <div class="flex items-center justify-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone text-orange-500 w-6 h-6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span class="text-gray-700">+237 690 550 568/ +237 683 001 604</span>
-              </div>
-              <div class="flex items-center justify-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-orange-500 w-6 h-6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span class="text-gray-700"><a href="www.digimarkconsulting.cm">Visit our website</a></span>
-              </div>
-              <div class="social d-flex justify-content-center">
-                <a class="mx-2" href="https://www.facebook.com/digimark.cm"><i class="fab fa-facebook-f"></i></a>
-                <a class="mx-2" href="https://www.instagram.com/digimark_consulting01/"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="flex items-center justify-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin text-orange-500 w-6 h-6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span class="text-gray-700">Carrefour L'amitié Ekie & Carrefour TKC, Yaounde, Cameroon</span>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </section>
+  </section>
 
       <section id="blog" class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -1124,42 +1175,8 @@
         </div>
       </section>
 
-     <section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-4xl font-bold mb-6">Discover Digimark Consulting</h2>
-        <p class="text-xl mb-8">
-          Digimark is a leading IT consulting firm specializing in digital transformation, software development, and professional training. We empower businesses and individuals with innovative tech solutions tailored to the African market.
-        </p>
-        <div class="space-y-4">
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-award w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.896a8 8 0 1 0-.965 1.13l-4.225 4.225-1.414-1.414L14.063 12z"/></svg>
-            <span>Trusted by top institutions and startups</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span>Expert-led training programs</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-target w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-            <span>Results-driven digital solutions</span>
-          </div>
-        </div>
-        <a href="https://www.digimarkconsulting.cm" target="_blank">
-          <button class="mt-8 bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg rounded-md font-semibold">
-            Visit Digimark Website
-          </button>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-
-
-      <section class="py-16 bg-gray-50">
+ <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
           <div class="max-w-4xl mx-auto border-l-4 border-l-red-600 bg-white rounded-lg shadow-md p-8">
             <div class="mx-auto px-[4%] sm:px-[4%] py-2 mt-8 lg:mt-12 bg-white">
@@ -1262,109 +1279,40 @@
         </div>
       </section>
 
-      <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-          <div class="max-w-4xl mx-auto border-l-4 border-l-orange-500 bg-white rounded-lg shadow-md p-8">
-            <div class="flex items-center space-x-2 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award text-orange-500 w-6 h-6"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.896a8 8 0 1 0-.965 1.13l-4.225 4.225-1.414-1.414L14.063 12z"/></svg>
-              <span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">Success Stories</span>
-            </div>
-            <h3 class="text-3xl text-gray-800 font-bold mb-2">Success Story: How We Helped Splendour Travels Digitize Their Operations</h3>
-            <p class="text-lg text-gray-600 mb-4">
-              June 20, 2024
-            </p>
-            <div class="prose max-w-none">
-              <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                When Splendour Travels approached us, they were facing challenges with manual booking processes, limited customer reach, and operational inefficiencies. Their traditional approach was limiting growth and customer satisfaction.
-              </p>
-              <h4 class="text-xl font-semibold text-gray-800 mb-4">The Challenge:</h4>
-              <p class="text-gray-700 leading-relaxed mb-6">
-                The company needed a comprehensive digital solution that could handle online bookings, real-time seat availability, secure payments, and customer management while maintaining their existing business processes.
-              </p>
-              <h4 class="text-xl font-semibold text-gray-800 mb-4">Our Solution:</h4>
-              <p class="text-gray-700 leading-relaxed mb-6">
-                We developed a custom mobile application with an integrated web dashboard that transformed their entire operation. The solution included real-time booking management, automated notifications, payment processing, and comprehensive analytics.
-              </p>
-              <h4 class="text-xl font-semibold text-gray-800 mb-4">Results:</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>300% increase in bookings within the first six months</li>
-                <li>Reduced operational costs by 40%</li>
-                <li>Improved customer satisfaction scores by 85%</li>
-                <li>Expanded market reach to new regions</li>
-              </ul>
-            </div>
+       <section class="py-16 bg-gradient-to-r from-orange-500 to-red-600 text-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">Discover Digimark Consulting</h2>
+        <p class="text-xl mb-8">
+          Digimark is a leading IT consulting firm specializing in digital transformation, software development, and professional training. We empower businesses and individuals with innovative tech solutions tailored to the African market.
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-award w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.896a8 8 0 1 0-.965 1.13l-4.225 4.225-1.414-1.414L14.063 12z"/></svg>
+            <span>Trusted by top institutions and startups</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Expert-led training programs</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-target w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>Results-driven digital solutions</span>
           </div>
         </div>
-      </section>
+        <a href="https://www.digimarkconsulting.cm" target="_blank">
+          <button class="mt-8 bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg rounded-md font-semibold">
+            Visit Digimark Website
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <section id="testimonials" class="py-16 bg-gradient-to-br from-red-50 to-orange-50">
-        <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it - hear from our satisfied clients about their experience working with DigiMark Consulting
-            </p>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6">
-              <div class="flex items-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote text-orange-500 w-8 h-8 mr-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.066-2.034-2.5a1.5 1.5 0 0 0-2.396.164C4.185 3.862 4 4.937 4 6v1c-1.25 0-2 .75-2 1.954V11c0 1.25.75 2 2 2h3.5c.5 0 .5.5.5 1v4.5c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1h-.5a2.5 2.5 0 0 1-2.5 2.5z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.756-2.066-2.034-2.5a1.5 1.5 0 0 0-2.396.164C16.185 3.862 16 4.937 16 6v1c-1.25 0-2 .75-2 1.954V11c0 1.25.75 2 2 2h3.5c.5 0 .5.5.5 1v4.5c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1h-.5a2.5 2.5 0 0 1-2.5 2.5z"/></svg>
-                <div class="flex space-x-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-              </div>
-              <p class="text-gray-700 mb-6 italic">"DigiMark Consulting transformed our business operations completely. Their mobile app solution increased our bookings by 300% and improved customer satisfaction significantly."</p>
-              <div class="border-t pt-4">
-                <p class="font-semibold text-gray-800">Jean-Paul Mbarga</p>
-                <p class="text-orange-600 text-sm">Splendour Travels</p>
-              </div>
-            </div>
 
-            <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6">
-              <div class="flex items-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote text-orange-500 w-8 h-8 mr-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.066-2.034-2.5a1.5 1.5 0 0 0-2.396.164C4.185 3.862 4 4.937 4 6v1c-1.25 0-2 .75-2 1.954V11c0 1.25.75 2 2 2h3.5c.5 0 .5.5.5 1v4.5c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1h-.5a2.5 2.5 0 0 1-2.5 2.5z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.756-2.066-2.034-2.5a1.5 1.5 0 0 0-2.396.164C16.185 3.862 16 4.937 16 6v1c-1.25 0-2 .75-2 1.954V11c0 1.25.75 2 2 2h3.5c.5 0 .5.5.5 1v4.5c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1h-.5a2.5 2.5 0 0 1-2.5 2.5z"/></svg>
-                <div class="flex space-x-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-              </div>
-              <p class="text-gray-700 mb-6 italic">"The team at DigiMark delivered beyond our expectations. Their web solution is not only beautiful but also highly functional and easy to manage."</p>
-              <div class="border-t pt-4">
-                <p class="font-semibold text-gray-800">Marie Nguyen</p>
-                <p class="text-orange-600 text-sm">Tropical Forest Consulting</p>
-              </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6">
-              <div class="flex items-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote text-orange-500 w-8 h-8 mr-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.066-2.034-2.5a1.5 1.5 0 0 0-2.396.164C4.185 3.862 4 4.937 4 6v1c-1.25 0-2 .75-2 1.954V11c0 1.25.75 2 2 2h3.5c.5 0 .5.5.5 1v4.5c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1h-.5a2.5 2.5 0 0 1-2.5 2.5z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.756-2.066-2.034-2.5a1.5 1.5 0 0 0-2.396.164C16.185 3.862 16 4.937 16 6v1c-1.25 0-2 .75-2 1.954V11c0 1.25.75 2 2 2h3.5c.5 0 .5.5.5 1v4.5c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1c0 .5.5.5 1 0v1h-.5a2.5 2.5 0 0 1-2.5 2.5z"/></svg>
-                <div class="flex space-x-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 fill-yellow-400 text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-              </div>
-              <p class="text-gray-700 mb-6 italic">"The training programs at DigiMark are exceptional. I gained practical skills that immediately improved my career prospects in the tech industry."</p>
-              <div class="border-t pt-4">
-                <p class="font-semibold text-gray-800">Samuel Fotso</p>
-                <p class="text-orange-600 text-sm">Tech Startup</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-  <!-- Footer with Contact Features & Social Links -->
+    <!-- Footer with Contact Features & Social Links -->
 <footer id="contact" class="bg-orange-100/80 border border-top border-bottom border-start-0 border-end-0">
     <div class="bg-orange-100/80 backdrop-blur-md border-t border-orange-200 shadow-xl p-8 max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -1527,6 +1475,126 @@
       </button>
     </div>
   </footer>
-    </div>
+      <!-- JS Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+  <!-- Inline page scripts: carousel controls, accessibility notes, small UI helpers -->
+  <script>
+  /*
+    Carousel controller
+    - Enables prev/next buttons
+    - Enables dot navigation
+    - Auto-advances every 3 seconds
+    - Pauses auto-advance while user hovers over the carousel
+    - Keeps code isolated so it won't collide with other scripts
+  */
+  (function () {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+    const container = document.querySelector('.carousel-container');
+
+    if (!slides.length) return; // nothing to do if there are no slides
+
+    let current = 0;
+    let timer = null;
+    const INTERVAL = 3000; // 3 seconds
+
+    // Show a slide at index and update dot states
+    function showSlide(index) {
+      const len = slides.length;
+      const idx = ((index % len) + len) % len; // normalize
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === idx);
+        s.setAttribute('aria-hidden', i === idx ? 'false' : 'true');
+        s.id = `slide-${i}`; // ensure slide has id for aria-controls
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
+      current = idx;
+    }
+
+    function nextSlide() { showSlide(current + 1); }
+    function prevSlide() { showSlide(current - 1); }
+
+    // Attach button listeners (defensive checks)
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetTimer(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetTimer(); });
+
+    // Dot navigation
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = Number(dot.getAttribute('data-slide'));
+        if (!Number.isNaN(idx)) {
+          showSlide(idx);
+          resetTimer();
+        }
+      });
+    });
+
+    // Auto-advance timer control
+    function startTimer() {
+      if (timer) return;
+      timer = setInterval(() => { nextSlide(); }, INTERVAL);
+    }
+    function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+    function resetTimer() { stopTimer(); startTimer(); }
+
+    // Pause when user hovers (so they can interact) and resume on leave
+    if (container) {
+      container.addEventListener('mouseenter', stopTimer);
+      container.addEventListener('mouseleave', startTimer);
+    }
+
+    // Initialize
+    showSlide(0);
+    startTimer();
+  })();
+
+  // Small UI helper: scroll-to-top visibility and behavior
+  (function () {
+    const btn = document.getElementById('scrollToTop');
+    if (!btn) return;
+    function update() {
+      if (window.scrollY > 300) {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+      }
+    }
+    window.addEventListener('scroll', update);
+    update();
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  })();
+
+  // Highlight active nav item on scroll
+  (function () {
+    const nav = document.querySelector('header .nav-beauty');
+    if (!nav) return;
+    const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+    const map = links.map(a => ({ a, id: a.getAttribute('href')?.slice(1), el: null }));
+    map.forEach(m => { if (m.id) m.el = document.getElementById(m.id); });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
+      });
+    }, { rootMargin: '0px 0px -50% 0px', threshold: 0.1 });
+    map.forEach(m => { if (m.el) observer.observe(m.el); });
+  })();
+  </script>
+
+
+  <script src="js/scripts.js"></script>
+
+
   </body>
 </html>
