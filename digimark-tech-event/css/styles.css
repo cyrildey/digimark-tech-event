@@ -11201,3 +11201,643 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+/* //style for adverts */
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #f8fafc;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Academic Guidance Section */
+.academic-guidance-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #64748b;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Service Cards */
+.service-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Theme Colors */
+.blue-theme::before {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.green-theme::before {
+    background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.orange-theme::before {
+    background: linear-gradient(135deg, #ea580c, #f97316);
+}
+
+.purple-theme::before {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+/* Service Icon */
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.service-icon img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+}
+
+/* Service Title */
+.service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #1f2937;
+}
+
+/* Service Details */
+.service-details {
+    margin-bottom: 30px;
+}
+
+.service-item {
+    margin-bottom: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-level {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.service-item p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* CTA Button */
+.cta-button {
+    width: 100%;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+}
+
+.blue-theme .cta-button {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.green-theme .cta-button {
+    background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.orange-theme .cta-button {
+    background: linear-gradient(135deg, #ea580c, #f97316);
+}
+
+.purple-theme .cta-button {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.contact-section h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+}
+
+.contact-section p {
+    font-size: 1.125rem;
+    color: #64748b;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.primary-button, .secondary-button {
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.primary-button {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    border: none;
+}
+
+.secondary-button {
+    background: transparent;
+    color: #1e3a8a;
+    border: 2px solid #1e3a8a;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+}
+
+.secondary-button:hover {
+    background: #1e3a8a;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 30px 20px;
+    }
+    
+    .contact-section {
+        padding: 40px 20px;
+    }
+    
+    .contact-section h3 {
+        font-size: 1.75rem;
+    }
+    
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .primary-button, .secondary-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .academic-guidance-section {
+        padding: 60px 0;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .service-icon img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .service-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+
+.header {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+ .contact-section {
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.5s;
+}
+
+/* Academic Guidance — Site-themed overrides */
+/* Scoped to avoid affecting other sections */
+.academic-guidance-section {
+  /* subtle warm gradient to match site */
+  background: linear-gradient(180deg, #fff7ed 0%, #ffe4e6 100%);
+}
+
+.academic-guidance-section .header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.academic-guidance-section .main-title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.academic-guidance-section .subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.academic-guidance-section .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.academic-guidance-section .service-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 28px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+}
+
+/* top accent bar */
+.academic-guidance-section .service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  transition: opacity .35s ease;
+}
+
+/* sleek sheen on hover */
+.academic-guidance-section .service-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(75deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-12deg);
+  opacity: 0;
+  transition: opacity .35s ease, left .8s ease;
+}
+
+.academic-guidance-section .service-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 18px 45px rgba(249, 115, 22, 0.15);
+}
+
+.academic-guidance-section .service-card:hover::after {
+  opacity: 1;
+  left: 120%;
+}
+
+/* themed top bars aligned to site palette */
+.academic-guidance-section .blue-theme::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+.academic-guidance-section .green-theme::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.academic-guidance-section .orange-theme::before { background: linear-gradient(90deg, #ea580c, #f97316); }
+.academic-guidance-section .purple-theme::before { background: linear-gradient(90deg, #fb7185, #f43f5e); }
+
+/* Icon styles */
+.academic-guidance-section .service-icon {
+  width: 84px; height: 84px; margin: 0 auto 22px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgba(249,115,22,.15), rgba(239,68,68,.1));
+  box-shadow: inset 0 0 0 2px rgba(249,115,22,.12), 0 8px 20px rgba(0,0,0,.06);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.academic-guidance-section .service-card:hover .service-icon {
+  transform: scale(1.06);
+  box-shadow: inset 0 0 0 2px rgba(249,115,22,.2), 0 16px 30px rgba(239,68,68,.15);
+}
+.academic-guidance-section .service-icon img { width: 56px; height: 56px; object-fit: contain; }
+
+/* Typography */
+.academic-guidance-section .service-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+/* Details list */
+.academic-guidance-section .service-details {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.academic-guidance-section .service-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  background: #fafafa;
+  border: 1px solid #f3f4f6;
+  border-left: 4px solid #f97316;
+  border-radius: 12px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.academic-guidance-section .service-item:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(249,115,22,0.12);
+}
+.academic-guidance-section .service-level {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: #9a3412;
+  background: #ffedd5;
+}
+.academic-guidance-section .service-item p {
+  margin: 0; color: #4b5563; font-size: .95rem;
+}
+
+/* CTA buttons inside cards */
+.academic-guidance-section .cta-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border: none;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.academic-guidance-section .cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(239,68,68,.25);
+  filter: brightness(1.02);
+}
+
+/* Contact area within academic guidance */
+.academic-guidance-section .contact-section h3 {
+  font-size: 2rem; font-weight: 800; color: #111827;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.academic-guidance-section .contact-section p { color: #6b7280; }
+.academic-guidance-section .contact-buttons { gap: 12px; }
+.academic-guidance-section .primary-button {
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  border: none; color: #fff;
+}
+.academic-guidance-section .secondary-button {
+  border-color: #f97316; color: #9a3412;
+}
+.academic-guidance-section .secondary-button:hover {
+  background: #f97316; color: #fff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .academic-guidance-section .main-title { font-size: 2.2rem; }
+  .academic-guidance-section .service-card { padding: 24px 18px; }
+  .academic-guidance-section .service-icon { width: 72px; height: 72px; }
+  .academic-guidance-section .service-icon img { width: 48px; height: 48px; }
+}
+
+@media (max-width: 480px) {
+  .academic-guidance-section { padding: 52px 0; }
+  .academic-guidance-section .service-title { font-size: 1.15rem; }
+}
+
+/* Academic Guidance — Minimal variant overrides */
+.academic-guidance-section { background: #ffffff; }
+.academic-guidance-section .main-title {
+  background: none;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  color: #111827;
+  font-weight: 700;
+}
+.academic-guidance-section .subtitle { color: #6b7280; }
+
+.academic-guidance-section .services-grid { gap: 24px; }
+
+.academic-guidance-section .service-card {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  padding: 28px 24px;
+}
+.academic-guidance-section .service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.academic-guidance-section .service-card::after { content: none !important; display: none !important; }
+.academic-guidance-section .service-card::before { height: 2px; background: #f97316; opacity: 0.9; }
+.academic-guidance-section .blue-theme::before,
+.academic-guidance-section .green-theme::before,
+.academic-guidance-section .orange-theme::before,
+.academic-guidance-section .purple-theme::before { background: #f97316; }
+
+.academic-guidance-section .service-icon {
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+.academic-guidance-section .service-card:hover .service-icon { transform: scale(1.02); box-shadow: none; }
+
+.academic-guidance-section .service-details { gap: 10px; }
+.academic-guidance-section .service-item {
+  background: transparent;
+  border: 1px solid #f3f4f6;
+  border-left: 2px solid #f97316;
+  box-shadow: none;
+  padding: 10px 12px;
+  transition: border-color .2s ease, background .2s ease;
+}
+.academic-guidance-section .service-item:hover {
+  background: #fafafa;
+  border-color: #e5e7eb;
+}
+.academic-guidance-section .service-level { background: #fff7ed; color: #9a3412; }
+
+.academic-guidance-section .cta-button {
+  background: #f97316;
+  box-shadow: none;
+  font-weight: 600;
+}
+.academic-guidance-section .cta-button:hover {
+  background: #ea580c;
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.academic-guidance-section .contact-section { box-shadow: none; border: 1px solid #f3f4f6; }
+.academic-guidance-section .contact-section h3 {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: #111827;
+}
+.academic-guidance-section .primary-button { background: #f97316; }
+.academic-guidance-section .primary-button:hover { background: #ea580c; }
+.academic-guidance-section .secondary-button { border-color: #f97316; color: #7c2d12; }
+.academic-guidance-section .secondary-button:hover { background: #f97316; color: #fff; }
+
+@keyframes ag-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.academic-guidance-section .service-card,
+.academic-guidance-section .header,
+.academic-guidance-section .contact-section { animation: ag-fade .35s ease both; }
+
