@@ -11308,6 +11308,19 @@ body {
     background: linear-gradient(135deg, #7c3aed, #8b5cf6);
 }
 
+/* Additional theme colors for training cards */
+.teal-theme::before {
+    background: linear-gradient(135deg, #0d9488, #14b8a6);
+}
+
+.indigo-theme::before {
+    background: linear-gradient(135deg, #4338ca, #6366f1);
+}
+
+.rose-theme::before {
+    background: linear-gradient(135deg, #fb7185, #f43f5e);
+}
+
 /* Service Icon */
 .service-icon {
     width: 80px;
@@ -11646,6 +11659,9 @@ body {
 .academic-guidance-section .green-theme::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
 .academic-guidance-section .orange-theme::before { background: linear-gradient(90deg, #ea580c, #f97316); }
 .academic-guidance-section .purple-theme::before { background: linear-gradient(90deg, #fb7185, #f43f5e); }
+.academic-guidance-section .teal-theme::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.academic-guidance-section .indigo-theme::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+.academic-guidance-section .rose-theme::before { background: linear-gradient(90deg, #fb7185, #f43f5e); }
 
 /* Icon styles */
 .academic-guidance-section .service-icon {
@@ -11787,7 +11803,10 @@ body {
 .academic-guidance-section .blue-theme::before,
 .academic-guidance-section .green-theme::before,
 .academic-guidance-section .orange-theme::before,
-.academic-guidance-section .purple-theme::before { background: #f97316; }
+.academic-guidance-section .purple-theme::before,
+.academic-guidance-section .teal-theme::before,
+.academic-guidance-section .indigo-theme::before,
+.academic-guidance-section .rose-theme::before { background: #f97316; }
 
 .academic-guidance-section .service-icon {
   background: transparent;
@@ -11841,3 +11860,62 @@ body {
 .academic-guidance-section .header,
 .academic-guidance-section .contact-section { animation: ag-fade .35s ease both; }
 
+/* Training Programs Section */
+.training-section {
+  margin-top: 80px;
+}
+
+.training-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #64748b;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Training Programs Grid */
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+/* Training Cards */
+.training-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.training-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transition: all 0.3s ease;
+}
+
+.training-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
